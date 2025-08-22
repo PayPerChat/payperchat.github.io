@@ -1,0 +1,28 @@
+{
+  "layout": {
+    "title": "PayPerChat 블로그"
+  },
+  "navigation": {
+    "home": "홈",
+    "categories": "카테고리",
+    "tags": "태그"
+  },
+  "metadata": {
+    "home": {
+      "title": "PayPerChat 블로그 - AI 비용 최적화 가이드",
+      "description": "ChatGPT Plus 구독 대신 종량제로 더 저렴하게 AI를 사용하는 방법을 알아보세요"
+    },
+    "posts": {
+      "title": "모든 포스트 - PayPerChat 블로그",
+      "description": "AI 비용 최적화와 사용법 가이드에 관한 모든 글을 둘러보세요"
+    },
+    "categories": {
+      "title": "카테고리 - PayPerChat 블로그",
+      "description": "AI 주제별로 카테고리를 통해 글을 둘러보세요"
+    },
+    "tags": {
+      "title": "태그 - PayPerChat 블로그", 
+      "description": "AI와 비용 최적화 관련 태그로 글을 찾아보세요"
+    }
+  }
+}

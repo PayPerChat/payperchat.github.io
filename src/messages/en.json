@@ -1,0 +1,33 @@
+{
+  "layout": {
+    "title": "PayPerChat Blog",
+    "subtitle": "AI Cost Optimization and LLM Usage Guides",
+    "description": "Discover smart ways to save AI costs! From understanding LLM tokens to comparing ChatGPT vs Claude vs Gemini."
+  },
+  "navigation": {
+    "home": "Home",
+    "categories": "Categories", 
+    "tags": "Tags",
+    "about": "About"
+  },
+  "homepage": {
+    "latestPosts": "Latest Posts",
+    "readMore": "Read More",
+    "noPostsFound": "No posts found"
+  },
+  "post": {
+    "readingTime": "{minutes} min read",
+    "publishedOn": "Published on",
+    "updatedOn": "Updated on",
+    "categories": "Categories",
+    "tags": "Tags"
+  },
+  "categories": {
+    "title": "Categories",
+    "noPostsInCategory": "No posts in this category"
+  },
+  "common": {
+    "backToHome": "Back to Home",
+    "language": "Language"
+  }
+}

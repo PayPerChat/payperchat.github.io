@@ -1,0 +1,28 @@
+{
+  "layout": {
+    "title": "PayPerChat Blog"
+  },
+  "navigation": {
+    "home": "Home",
+    "categories": "Categories", 
+    "tags": "Tags"
+  },
+  "metadata": {
+    "home": {
+      "title": "PayPerChat Blog - AI Cost Optimization Guide",
+      "description": "Learn how to use AI more cost-effectively with pay-per-use instead of ChatGPT Plus subscriptions"
+    },
+    "posts": {
+      "title": "All Posts - PayPerChat Blog",
+      "description": "Browse all articles about AI cost optimization and usage guides"
+    },
+    "categories": {
+      "title": "Categories - PayPerChat Blog", 
+      "description": "Browse articles by category on AI topics"
+    },
+    "tags": {
+      "title": "Tags - PayPerChat Blog",
+      "description": "Find articles by tags related to AI and cost optimization"
+    }
+  }
+}

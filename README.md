@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PayPerChat Blog
+
+A modern, multilingual blog built with Next.js 15, designed to drive user acquisition for PayPerChat's pay-per-use AI service.
+
+## Features
+
+- ✅ **Next.js 15** with App Router for SSG/SSR
+- ✅ **Multilingual Support** with next-intl (Korean/English, expandable to 10+ languages)
+- ✅ **MDX Content** - Automatic markdown processing with frontmatter
+- ✅ **SEO Optimized** - Meta tags, structured data, automatic sitemap.xml
+- ✅ **GitHub Pages Deployment** - Automated with GitHub Actions
+- ✅ **TypeScript** - Fully typed for reliability
+- ✅ **Tailwind CSS** - Modern, responsive design
+- ✅ **Language-specific Filtering** - Posts filtered by language
+- ✅ **Categories & Tags** - Organized content structure
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Internationalization**: next-intl
+- **Content**: MDX with gray-matter
+- **Deployment**: GitHub Pages with Actions
+- **SEO**: Automatic sitemap.xml, robots.txt, structured data
+
+## Project Structure
+
+```
+payperchat-blog/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── [locale]/          # Locale-based routing
+│   │   ├── sitemap.ts         # Automatic sitemap generation
+│   │   └── robots.ts          # SEO robots configuration
+│   ├── components/            # Reusable React components
+│   ├── content/               # Markdown content
+│   │   ├── en/posts/         # English posts
+│   │   └── ko/posts/         # Korean posts
+│   ├── i18n/                 # Internationalization config
+│   └── lib/                  # Utility functions
+├── messages/                  # Translation files
+├── .github/workflows/         # GitHub Actions
+└── README.md
+```
 
 ## Getting Started
 
-First, run the development server:
+### Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open browser to http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Building
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Build for production
+npm run build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Files will be generated in ./out/ directory
+```
 
-## Learn More
+### Adding Content
 
-To learn more about Next.js, take a look at the following resources:
+1. Create markdown files in `src/content/[locale]/posts/`
+2. Use the frontmatter structure:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```yaml
+---
+title: "Your Post Title"
+excerpt: "Post description for SEO"
+date: "2025-01-21"
+categories:
+  - "Category Name"
+tags:
+  - "payperchat"
+  - "relevant-tag"
+author: "Author Name"
+image: "/assets/images/posts/image.png"
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Your content here...
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site automatically deploys to GitHub Pages when you push to the main branch. The GitHub Actions workflow:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Builds the Next.js application
+2. Exports static files
+3. Deploys to GitHub Pages
+
+## SEO Features
+
+- **Automatic Sitemap**: Generated at `/sitemap.xml`
+- **Robots.txt**: SEO-friendly robots configuration
+- **Structured Data**: JSON-LD for articles and website
+- **Meta Tags**: Open Graph and Twitter cards
+- **Language-specific URLs**: SEO-optimized locale routing
+
+## Content Strategy
+
+Focus on AI cost optimization and PayPerChat promotion:
+
+- **Target Keywords**: AI 비용 절약, ChatGPT 대안, 종량제 AI
+- **Content Quality**: 2000+ words, practical examples
+- **PayPerChat Integration**: Natural service mentions and comparisons
+- **Categories**: AI Fundamentals, Cost Optimization, Usage Guides
+
+## Multilingual Support
+
+- **Primary**: Korean (ko)
+- **Secondary**: English (en)
+- **Expandable**: Ready for 10+ languages
+- **Language Switching**: Automatic detection and manual selection
+- **Content Linking**: Cross-language post references via `ref` field
+
+## Contributing
+
+1. Add content to appropriate language directory
+2. Follow frontmatter structure
+3. Include PayPerChat value propositions naturally
+4. Optimize for target keywords
+5. Test locally before pushing
+
+## License
+
+This project is proprietary to PayPerChat.

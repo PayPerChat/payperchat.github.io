@@ -1,0 +1,33 @@
+{
+  "layout": {
+    "title": "PayPerChat 블로그",
+    "subtitle": "AI 비용 최적화와 LLM 활용 가이드",
+    "description": "AI 비용을 절약하는 똑똑한 방법을 알아보세요! LLM 토큰 이해부터 ChatGPT vs Claude vs Gemini 비교까지."
+  },
+  "navigation": {
+    "home": "홈",
+    "categories": "카테고리",
+    "tags": "태그",
+    "about": "소개"
+  },
+  "homepage": {
+    "latestPosts": "최신 포스트",
+    "readMore": "더 읽기",
+    "noPostsFound": "포스트를 찾을 수 없습니다"
+  },
+  "post": {
+    "readingTime": "{minutes}분 읽기",
+    "publishedOn": "게시일",
+    "updatedOn": "수정일",
+    "categories": "카테고리",
+    "tags": "태그"
+  },
+  "categories": {
+    "title": "카테고리",
+    "noPostsInCategory": "이 카테고리에 포스트가 없습니다"
+  },
+  "common": {
+    "backToHome": "홈으로 돌아가기",
+    "language": "언어"
+  }
+}

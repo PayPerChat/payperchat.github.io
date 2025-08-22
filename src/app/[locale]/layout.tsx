@@ -29,7 +29,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex flex-col min-h-screen bg-gray-950">
+      <div className="flex flex-col min-h-screen bg-white">
         <JsonLd locale={locale} />
         <Navbar />
         <main className="flex-1">

@@ -22,44 +22,44 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-950/95 backdrop-blur-lg border-b border-gray-800 sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-lg border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="font-bold text-2xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-200">
+          <Link href="/" className="font-bold text-xl text-blue-600 hover:text-blue-700 transition-colors">
             {t('layout.title')}
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             <Link 
               href="/"
-              className="px-6 py-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-all duration-200 font-medium"
+              className="px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
             >
               {t('navigation.home')}
             </Link>
             <Link 
               href="/categories"
-              className="px-6 py-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-all duration-200 font-medium"
+              className="px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
             >
               {t('navigation.categories')}
             </Link>
             <Link 
               href="/tags"
-              className="px-6 py-3 text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-all duration-200 font-medium"
+              className="px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200 font-medium"
             >
               {t('navigation.tags')}
             </Link>
 
             {/* Language Selector */}
-            <div className="ml-6">
+            <div className="ml-4">
               <select
                 value={locale}
                 onChange={(e) => handleLanguageChange(e.target.value)}
-                className="appearance-none bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm font-medium cursor-pointer hover:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-white"
+                className="appearance-none bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
               >
                 {languages.map((lang) => (
-                  <option key={lang.code} value={lang.code} className="bg-gray-800">
+                  <option key={lang.code} value={lang.code}>
                     {lang.flag} {lang.name}
                   </option>
                 ))}
@@ -70,7 +70,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-3 hover:bg-gray-800 rounded-xl transition-colors text-gray-300"
+            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,42 +81,42 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-6 border-t border-gray-800 bg-gray-950/95 backdrop-blur-lg">
-            <div className="space-y-2">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white">
+            <div className="space-y-1">
               <Link 
                 href="/"
-                className="block px-6 py-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-colors font-medium"
+                className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('navigation.home')}
               </Link>
               <Link 
                 href="/categories"
-                className="block px-6 py-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-colors font-medium"
+                className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('navigation.categories')}
               </Link>
               <Link 
                 href="/tags"
-                className="block px-6 py-4 text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-colors font-medium"
+                className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t('navigation.tags')}
               </Link>
               
               {/* Mobile Language Selector */}
-              <div className="px-6 py-2">
+              <div className="px-4 py-2">
                 <select
                   value={locale}
                   onChange={(e) => {
                     handleLanguageChange(e.target.value);
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm font-medium cursor-pointer hover:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white"
+                  className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   {languages.map((lang) => (
-                    <option key={lang.code} value={lang.code} className="bg-gray-800">
+                    <option key={lang.code} value={lang.code}>
                       {lang.flag} {lang.name}
                     </option>
                   ))}

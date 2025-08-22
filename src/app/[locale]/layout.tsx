@@ -29,10 +29,10 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-gray-950">
         <JsonLd locale={locale} />
         <Navbar />
-        <main className="flex-1 container mx-auto px-4 py-8">
+        <main className="flex-1">
           {children}
         </main>
         <Footer />

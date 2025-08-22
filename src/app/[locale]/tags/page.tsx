@@ -3,6 +3,8 @@ import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 interface TagsPageProps {
   params: Promise<{ locale: Locale }>;
 }

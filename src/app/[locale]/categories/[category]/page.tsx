@@ -4,6 +4,8 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 interface CategoryPageProps {
   params: Promise<{ 
     locale: Locale;

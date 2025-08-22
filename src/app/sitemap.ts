@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, getAllCategories, getAllTags } from '@/lib/posts'
-import { locales } from '@/i18n/request'
+import { routing } from '@/i18n/routing'
 
 export const dynamic = 'force-static'
 
@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes: MetadataRoute.Sitemap = []
 
   // Add homepage for each locale
-  locales.forEach(locale => {
+  routing.locales.forEach(locale => {
     routes.push({
       url: `${baseUrl}/${locale}`,
       lastModified: new Date(),
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Add static pages for each locale
   const staticPages = ['posts', 'categories', 'tags']
-  locales.forEach(locale => {
+  routing.locales.forEach(locale => {
     staticPages.forEach(page => {
       routes.push({
         url: `${baseUrl}/${locale}/${page}`,
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
 
   // Add all posts
-  locales.forEach(locale => {
+  routing.locales.forEach(locale => {
     const posts = getAllPosts(locale)
     posts.forEach(post => {
       routes.push({
@@ -45,7 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
 
   // Add category pages
-  locales.forEach(locale => {
+  routing.locales.forEach(locale => {
     const categories = getAllCategories(locale)
     categories.forEach(category => {
       routes.push({
@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
 
   // Add tag pages
-  locales.forEach(locale => {
+  routing.locales.forEach(locale => {
     const tags = getAllTags(locale)
     tags.forEach(tag => {
       routes.push({

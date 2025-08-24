@@ -54,12 +54,13 @@ export default function Navbar() {
             {/* Language Selector */}
             <div className="ml-4">
               <select
+                key={`lang-select-${locale}`}
                 value={locale}
                 onChange={(e) => handleLanguageChange(e.target.value)}
                 className="appearance-none bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
               >
                 {languages.map((lang) => (
-                  <option key={lang.code} value={lang.code}>
+                  <option key={lang.code} value={lang.code} selected={lang.code === locale}>
                     {lang.flag} {lang.name}
                   </option>
                 ))}
@@ -108,6 +109,7 @@ export default function Navbar() {
               {/* Mobile Language Selector */}
               <div className="px-4 py-2">
                 <select
+                  key={`mobile-lang-select-${locale}`}
                   value={locale}
                   onChange={(e) => {
                     handleLanguageChange(e.target.value);
@@ -116,7 +118,7 @@ export default function Navbar() {
                   className="w-full bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
                   {languages.map((lang) => (
-                    <option key={lang.code} value={lang.code}>
+                    <option key={lang.code} value={lang.code} selected={lang.code === locale}>
                       {lang.flag} {lang.name}
                     </option>
                   ))}

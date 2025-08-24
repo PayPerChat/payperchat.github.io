@@ -21,7 +21,7 @@ export async function generateStaticParams() {
     for (const category of categories) {
       paths.push({
         locale,
-        category: encodeURIComponent(category),
+        category: category, // Don't encode here, Next.js will handle it
       });
     }
   }
@@ -49,7 +49,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-6 py-12">
       <header className="mb-8">
         <nav className="text-sm text-gray-500 mb-4">
           <Link href={`/${locale}`} className="hover:text-blue-600">

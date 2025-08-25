@@ -49,8 +49,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
-      <header className="mb-8">
+    <div className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+      <header className="mb-12">
         <nav className="text-sm text-gray-500 mb-4">
           <Link href={`/${locale}`} className="hover:text-blue-600">
             {locale === 'ko' ? '홈' : 'Home'}
@@ -72,9 +72,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </p>
       </header>
 
-      <div className="space-y-8">
+      <div className="space-y-12">
         {posts.map((post) => (
-          <article key={post.slug} className="border-b border-gray-200 pb-8 last:border-b-0">
+          <article key={post.slug} className="border-b border-gray-200 pb-12 last:border-b-0 last:pb-0">
             <div className="flex flex-col md:flex-row gap-6">
               {post.image && (
                 <div className="md:w-1/3">
@@ -149,7 +149,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </div>
 
       {/* Back to categories */}
-      <div className="mt-12 text-center">
+      <div className="mt-16 pt-8 border-t border-gray-200 text-center">
         <Link 
           href={`/${locale}/categories`}
           className="text-blue-600 hover:text-blue-800 transition-colors"

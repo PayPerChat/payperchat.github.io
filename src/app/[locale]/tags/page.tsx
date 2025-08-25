@@ -24,8 +24,8 @@ export default async function TagsPage({ params }: TagsPageProps) {
   const tags = getAllTags(locale);
 
   return (
-    <div className="container mx-auto py-16 lg:py-20">
-      <header className="mb-20 text-center">
+    <div className="container mx-auto py-16 lg:py-20 px-6">
+      <header className="mb-20 text-center pt-8">
         <h1 className="text-5xl font-bold mb-6 text-gray-900">
           {locale === 'ko' ? '태그' : 'Tags'}
         </h1>
@@ -69,7 +69,7 @@ export default async function TagsPage({ params }: TagsPageProps) {
         </div>
       )}
 
-      <div className="mt-20 pt-12 border-t border-gray-200 text-center">
+      <div className="mt-20 pt-12 border-t border-gray-200 text-center pb-12">
         <Link 
           href={`/${locale}/posts`}
           className="btn btn-secondary inline-flex items-center gap-2"

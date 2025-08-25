@@ -25,10 +25,10 @@ export default async function LocaleLayout({
   }
 
   // Providing all messages to the client
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
 
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider messages={messages} locale={locale}>
       <div className="flex flex-col min-h-screen bg-white">
         <JsonLd locale={locale} />
         <Navbar />

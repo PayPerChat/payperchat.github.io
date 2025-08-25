@@ -21,7 +21,7 @@ export async function generateStaticParams() {
     for (const category of categories) {
       paths.push({
         locale,
-        category: category, // Don't encode here, Next.js will handle it
+        category: encodeURIComponent(category),
       });
     }
   }

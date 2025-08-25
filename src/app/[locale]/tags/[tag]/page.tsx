@@ -21,7 +21,7 @@ export async function generateStaticParams() {
     for (const tag of tags) {
       paths.push({
         locale,
-        tag: tag, // Don't encode here, Next.js will handle it
+        tag: encodeURIComponent(tag),
       });
     }
   }

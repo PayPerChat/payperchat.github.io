@@ -15,28 +15,28 @@ export interface TagMapping {
 }
 
 export const categoryMappings: CategoryMapping = {
-  'cost-optimization': {
-    en: 'Cost Optimization',
-    ko: '비용 최적화'
+  'artificial-intelligence': {
+    en: 'Artificial Intelligence',
+    ko: '인공지능'
   }
 };
 
 export const tagMappings: TagMapping = {
-  'payperchat': {
-    en: 'payperchat',
-    ko: 'payperchat'
+  'ai-tokens': {
+    en: 'AI Tokens',
+    ko: '토큰'
   },
-  'chatgpt-plus': {
-    en: 'chatgpt-plus',
-    ko: 'chatgpt-plus'
+  'tokenization': {
+    en: 'Tokenization',
+    ko: '토큰화'
   },
-  'ai-cost-savings': {
-    en: 'ai-cost-savings',
-    ko: 'ai-비용절약'
+  'chatgpt-pricing': {
+    en: 'ChatGPT Pricing',
+    ko: 'ChatGPT 가격'
   },
-  'pay-per-use': {
-    en: 'pay-per-use',
-    ko: '종량제'
+  'chatgpt-usage': {
+    en: 'ChatGPT Usage',
+    ko: 'ChatGPT 사용량'
   }
 };
 

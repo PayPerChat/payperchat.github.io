@@ -1,5 +1,6 @@
 import { getAllPosts, getAllCategoryDisplayNames, getCategorySlug } from '@/lib/posts';
 import { getCategoryDisplayName } from '@/lib/mappings';
+import { generateBaseMetadata, toNextjsMetadata } from '@/lib/metadata';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -12,20 +13,29 @@ interface HomePageProps {
 
 export async function generateMetadata({ params }: HomePageProps) {
   const { locale } = await params;
-  const t = await getTranslations('metadata.home');
+  const metadataConfig = generateBaseMetadata(locale);
   
-  return {
-    title: t('title'),
-    description: t('description'),
+  return toNextjsMetadata({
+    ...metadataConfig,
+    title: locale === 'ko' 
+      ? 'AI 비용 70% 절약하는 PayPerChat 블로그'
+      : 'PayPerChat Blog - Save 70% on AI Costs',
+    description: locale === 'ko'
+      ? 'ChatGPT Plus 대신 종량제 AI 서비스로 월 70% 절약하세요. LLM 최적화와 비용 효율적인 AI 사용법을 알아보세요.'
+      : 'Save 70% monthly by switching from ChatGPT Plus to pay-per-use AI services. Learn LLM optimization and cost-efficient AI usage.',
+    keywords: locale === 'ko'
+      ? ['AI 비용절약', 'ChatGPT 대안', '종량제 AI', 'LLM 최적화', 'PayPerChat', '비용 최적화']
+      : ['AI cost savings', 'ChatGPT alternative', 'pay-per-use AI', 'LLM optimization', 'PayPerChat', 'cost optimization'],
     openGraph: {
-      title: t('title'),
-      description: t('description'),
-      url: `https://payperchat.github.io/${locale}`,
-      siteName: 'PayPerChat Blog',
-      locale: locale === 'ko' ? 'ko_KR' : 'en_US',
-      type: 'website',
-    },
-  };
+      ...metadataConfig.openGraph!,
+      title: locale === 'ko'
+        ? 'AI 비용 70% 절약하는 PayPerChat 블로그'
+        : 'PayPerChat Blog - Save 70% on AI Costs',
+      description: locale === 'ko'
+        ? 'ChatGPT Plus 대신 종량제 AI로 월 70% 절약'
+        : 'Save 70% monthly with pay-per-use AI instead of ChatGPT Plus'
+    }
+  });
 }
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -139,31 +149,133 @@ export default async function HomePage({ params }: HomePageProps) {
               }
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/${locale}/categories/${category.slug}`}
-                className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100"
-              >
-                <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/40" />
-                <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
-                <div className="absolute inset-0 -z-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" />
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            {categories.map((category) => {
+              // 카테고리별 아이콘과 설명 정의
+              const getCategoryConfig = (slug: string, displayName: string, locale: Locale) => {
+                const configs = {
+                  'cost-optimization': {
+                    icon: (
+                      <svg className="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                      </svg>
+                    ),
+                    description: locale === 'ko' ? 'AI 비용을 효율적으로 관리하는 방법' : 'Efficient AI cost management strategies',
+                    gradient: 'from-green-50 to-emerald-50',
+                    borderColor: 'border-green-200'
+                  },
+                  'artificial-intelligence': {
+                    icon: (
+                      <svg className="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    ),
+                    description: locale === 'ko' ? '인공지능의 기본 개념과 활용 방법' : 'AI fundamentals and practical applications',
+                    gradient: 'from-purple-50 to-violet-50',
+                    borderColor: 'border-purple-200'
+                  },
+                  'tutorials': {
+                    icon: (
+                      <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    ),
+                    description: locale === 'ko' ? '단계별 AI 사용법과 실무 가이드' : 'Step-by-step AI guides and tutorials',
+                    gradient: 'from-blue-50 to-cyan-50',
+                    borderColor: 'border-blue-200'
+                  },
+                  'productivity': {
+                    icon: (
+                      <svg className="h-8 w-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    ),
+                    description: locale === 'ko' ? 'AI로 업무 효율성을 높이는 방법' : 'Boost your productivity with AI tools',
+                    gradient: 'from-orange-50 to-amber-50',
+                    borderColor: 'border-orange-200'
+                  },
+                  'news': {
+                    icon: (
+                      <svg className="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
+                      </svg>
+                    ),
+                    description: locale === 'ko' ? '최신 AI 뉴스와 업데이트' : 'Latest AI news and updates',
+                    gradient: 'from-red-50 to-pink-50',
+                    borderColor: 'border-red-200'
+                  },
+                  'comparison': {
+                    icon: (
+                      <svg className="h-8 w-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    ),
+                    description: locale === 'ko' ? 'AI 서비스 비교와 선택 가이드' : 'AI service comparisons and selection guide',
+                    gradient: 'from-indigo-50 to-blue-50',
+                    borderColor: 'border-indigo-200'
+                  }
+                };
                 
-                <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-white/70">
-                  <div className="mr-8 flex items-center gap-x-4">
-                    <div className="flex items-center gap-x-1">
-                      <div className="h-1 w-1 rounded-full bg-white/40" />
-                      <div className="h-1 w-1 rounded-full bg-white/60" />
-                      <div className="h-1 w-1 rounded-full bg-white/80" />
+                // 기본 설정 (존재하지 않는 카테고리용)
+                return configs[slug as keyof typeof configs] || {
+                  icon: (
+                    <svg className="h-8 w-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  ),
+                  description: locale === 'ko' ? 'AI 관련 유용한 정보와 가이드' : 'Useful AI information and guides',
+                  gradient: 'from-gray-50 to-slate-50',
+                  borderColor: 'border-gray-200'
+                };
+              };
+              
+              const config = getCategoryConfig(category.slug, category.displayName, locale);
+              
+              return (
+                <Link
+                  key={category.slug}
+                  href={`/${locale}/categories/${category.slug}`}
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br ${config.gradient} p-8 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-xl border ${config.borderColor} min-h-[200px]`}
+                >
+                  {/* 배경 패턴 */}
+                  <div className="absolute inset-0 opacity-5">
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent" />
+                  </div>
+                  
+                  {/* 아이콘 영역 */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-white/80 shadow-sm group-hover:bg-white transition-colors duration-300">
+                      {config.icon}
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 rounded-full bg-gray-300/50"></div>
+                      <div className="w-2 h-2 rounded-full bg-gray-300/70"></div>
+                      <div className="w-2 h-2 rounded-full bg-gray-300/90"></div>
                     </div>
                   </div>
-                </div>
-                <h3 className="mt-3 text-lg font-semibold leading-6 text-white group-hover:text-blue-200 transition-colors">
-                  {category.displayName}
-                </h3>
-              </Link>
-            ))}
+                  
+                  {/* 콘텐츠 영역 */}
+                  <div className="relative z-10 mt-8">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors duration-300 mb-3">
+                      {category.displayName}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                      {config.description}
+                    </p>
+                    
+                    {/* 화살표 아이콘 */}
+                    <div className="mt-4 flex items-center text-gray-500 group-hover:text-blue-600 transition-colors duration-300">
+                      <span className="text-sm font-medium">
+                        {locale === 'ko' ? '자세히 보기' : 'Explore more'}
+                      </span>
+                      <svg className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

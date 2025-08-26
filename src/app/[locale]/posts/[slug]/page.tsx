@@ -1,5 +1,6 @@
 import { getAllPosts, getPostBySlug, getCategorySlug, getTagSlug } from '@/lib/posts';
 import { getCategoryDisplayName, getTagDisplayName } from '@/lib/mappings';
+import { generatePostMetadata, toNextjsMetadata } from '@/lib/metadata';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -7,7 +8,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import JsonLd from '@/components/JsonLd';
 
-export const dynamic = 'force-static';
+export const dynamic = process.env.NODE_ENV === 'production' ? 'force-static' : 'auto';
 
 interface PostPageProps {
   params: Promise<{ 
@@ -39,33 +40,12 @@ export async function generateMetadata({ params }: PostPageProps) {
   if (!post) {
     return {
       title: 'Post Not Found',
+      description: 'The requested post could not be found.',
     };
   }
 
-  return {
-    title: post.title,
-    description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `https://payperchat.github.io/${locale}/posts/${slug}`,
-      siteName: 'PayPerChat Blog',
-      locale: locale === 'ko' ? 'ko_KR' : 'en_US',
-      type: 'article',
-      publishedTime: post.date,
-      authors: post.author ? [post.author] : undefined,
-      images: post.image ? [{
-        url: post.image,
-        alt: post.title,
-      }] : undefined,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description: post.excerpt,
-      images: post.image ? [post.image] : undefined,
-    },
-  };
+  const metadataConfig = generatePostMetadata(post, locale);
+  return toNextjsMetadata(metadataConfig);
 }
 
 export default async function PostPage({ params }: PostPageProps) {

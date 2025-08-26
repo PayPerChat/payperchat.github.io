@@ -1,5 +1,6 @@
 import { getPostsByTag, getAllTagSlugs, getTagBySlug, getTagSlug, getCategorySlug } from '@/lib/posts';
 import { getTagDisplayName, getCategoryDisplayName } from '@/lib/mappings';
+import { generateTagMetadata, toNextjsMetadata } from '@/lib/metadata';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -32,12 +33,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TagPageProps) {
   const { locale, tag } = await params;
-  const tagDisplayName = getTagDisplayName(tag, locale);
+  const posts = getPostsByTag(tag, locale);
+  const metadataConfig = generateTagMetadata(tag, locale, posts.length);
   
-  return {
-    title: `#${tagDisplayName} - PayPerChat Blog`,
-    description: `${tagDisplayName} 태그가 포함된 모든 글을 확인하세요`,
-  };
+  return toNextjsMetadata(metadataConfig);
 }
 
 export default async function TagPage({ params }: TagPageProps) {

@@ -1,5 +1,6 @@
 import { getPostsByCategory, getAllCategorySlugs, getCategoryBySlug, getTagSlug } from '@/lib/posts';
 import { getCategoryDisplayName, getTagDisplayName } from '@/lib/mappings';
+import { generateCategoryMetadata, toNextjsMetadata } from '@/lib/metadata';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -32,12 +33,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps) {
   const { locale, category } = await params;
-  const categoryDisplayName = getCategoryDisplayName(category, locale);
+  const posts = getPostsByCategory(category, locale);
+  const metadataConfig = generateCategoryMetadata(category, locale, posts.length);
   
-  return {
-    title: `${categoryDisplayName} - PayPerChat Blog`,
-    description: `${categoryDisplayName} 카테고리의 모든 글을 확인하세요`,
-  };
+  return toNextjsMetadata(metadataConfig);
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {

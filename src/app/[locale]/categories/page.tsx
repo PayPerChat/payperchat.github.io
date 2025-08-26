@@ -1,4 +1,5 @@
 import { getAllCategoryDisplayNames, getPostsByCategory, getCategorySlug } from '@/lib/posts';
+import { generateListPageMetadata, toNextjsMetadata } from '@/lib/metadata';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -11,12 +12,9 @@ interface CategoriesPageProps {
 
 export async function generateMetadata({ params }: CategoriesPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'metadata' });
+  const metadataConfig = generateListPageMetadata('categories', locale);
   
-  return {
-    title: t('categories.title'),
-    description: t('categories.description'),
-  };
+  return toNextjsMetadata(metadataConfig);
 }
 
 export default async function CategoriesPage({ params }: CategoriesPageProps) {

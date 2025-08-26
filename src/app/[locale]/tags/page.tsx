@@ -1,5 +1,5 @@
 import { getAllTagDisplayNames, getPostsByTag, getTagSlug } from '@/lib/posts';
-import { generateListPageMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { generateListPageMetadata, toNextjsMetadata } from '../../../lib/metadata';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';

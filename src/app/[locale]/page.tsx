@@ -1,6 +1,6 @@
 import { getAllPosts, getAllCategoryDisplayNames, getCategorySlug } from '@/lib/posts';
 import { getCategoryDisplayName } from '@/lib/mappings';
-import { generateBaseMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { generateBaseMetadata, toNextjsMetadata } from '../../lib/metadata';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';

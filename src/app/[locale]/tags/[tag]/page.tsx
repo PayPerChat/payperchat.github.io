@@ -1,6 +1,6 @@
 import { getPostsByTag, getAllTagSlugs, getTagBySlug, getTagSlug, getCategorySlug } from '@/lib/posts';
 import { getTagDisplayName, getCategoryDisplayName } from '@/lib/mappings';
-import { generateTagMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { generateTagMetadata, toNextjsMetadata } from '../../../../lib/metadata';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';

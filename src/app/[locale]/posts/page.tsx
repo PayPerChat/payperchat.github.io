@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getAllTags } from '@/lib/posts';
+import { getAllPosts, getAllCategories, getAllTags, getCategorySlug, getTagSlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -43,7 +43,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
               {categories.map((category) => (
                 <Link
                   key={category}
-                  href={`/${locale}/categories/${encodeURIComponent(category)}`}
+                  href={`/${locale}/categories/${getCategorySlug(category)}`}
                   className="block text-blue-600 hover:text-blue-800 transition-colors"
                 >
                   {category}
@@ -61,7 +61,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
               {tags.map((tag) => (
                 <Link
                   key={tag}
-                  href={`/${locale}/tags/${encodeURIComponent(tag)}`}
+                  href={`/${locale}/tags/${getTagSlug(tag)}`}
                   className="bg-gray-100 text-gray-700 text-sm px-2 py-1 rounded hover:bg-gray-200 transition-colors"
                 >
                   #{tag}

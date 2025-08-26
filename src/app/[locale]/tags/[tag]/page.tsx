@@ -1,4 +1,4 @@
-import { getPostsByTag, getAllTags } from '@/lib/posts';
+import { getPostsByTag, getAllTagSlugs, getTagBySlug, getTagSlug, getCategorySlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -17,11 +17,11 @@ export async function generateStaticParams() {
   const paths = [];
   
   for (const locale of routing.locales) {
-    const tags = getAllTags(locale);
-    for (const tag of tags) {
+    const tagData = getAllTagSlugs(locale);
+    for (const { slug } of tagData) {
       paths.push({
         locale,
-        tag: encodeURIComponent(tag),
+        tag: slug,
       });
     }
   }
@@ -31,18 +31,30 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TagPageProps) {
   const { locale, tag } = await params;
-  const decodedTag = decodeURIComponent(tag);
+  const tagName = getTagBySlug(tag, locale);
+  
+  if (!tagName) {
+    return {
+      title: 'Tag Not Found - PayPerChat Blog',
+      description: 'The requested tag could not be found.',
+    };
+  }
   
   return {
-    title: `#${decodedTag} - PayPerChat Blog`,
-    description: `${decodedTag} 태그가 포함된 모든 글을 확인하세요`,
+    title: `#${tagName} - PayPerChat Blog`,
+    description: `${tagName} 태그가 포함된 모든 글을 확인하세요`,
   };
 }
 
 export default async function TagPage({ params }: TagPageProps) {
   const { locale, tag } = await params;
-  const decodedTag = decodeURIComponent(tag);
-  const posts = getPostsByTag(decodedTag, locale);
+  const tagName = getTagBySlug(tag, locale);
+  
+  if (!tagName) {
+    notFound();
+  }
+  
+  const posts = getPostsByTag(tagName, locale);
   
   if (posts.length === 0) {
     notFound();
@@ -60,10 +72,10 @@ export default async function TagPage({ params }: TagPageProps) {
             {locale === 'ko' ? '태그' : 'Tags'}
           </Link>
           <span className="mx-2">/</span>
-          <span>#{decodedTag}</span>
+          <span>#{tagName}</span>
         </nav>
         
-        <h1 className="text-4xl font-bold mb-4">#{decodedTag}</h1>
+        <h1 className="text-4xl font-bold mb-4">#{tagName}</h1>
         <p className="text-gray-600">
           {locale === 'ko' 
             ? `이 태그가 포함된 ${posts.length}개의 글이 있습니다.`
@@ -90,7 +102,7 @@ export default async function TagPage({ params }: TagPageProps) {
                   {post.categories.map((category) => (
                     <Link
                       key={category}
-                      href={`/${locale}/categories/${encodeURIComponent(category)}`}
+                      href={`/${locale}/categories/${getCategorySlug(category)}`}
                       className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded hover:bg-blue-200 transition-colors"
                     >
                       {category}
@@ -122,17 +134,17 @@ export default async function TagPage({ params }: TagPageProps) {
                 </div>
                 
                 <div className="flex flex-wrap gap-1 mt-3">
-                  {post.tags.map((tagName) => (
+                  {post.tags.map((postTag) => (
                     <Link
-                      key={tagName}
-                      href={`/${locale}/tags/${encodeURIComponent(tagName)}`}
+                      key={postTag}
+                      href={`/${locale}/tags/${getTagSlug(postTag)}`}
                       className={`text-xs px-2 py-1 rounded transition-colors ${
-                        tagName === decodedTag 
+                        postTag === tagName 
                           ? 'bg-blue-100 text-blue-800' 
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      #{tagName}
+                      #{postTag}
                     </Link>
                   ))}
                 </div>

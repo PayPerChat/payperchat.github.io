@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts, getAllCategories, getAllTags } from '@/lib/posts'
+import { getAllPosts, getAllCategories, getAllTags, getCategorySlug, getTagSlug } from '@/lib/posts'
 import { routing } from '@/i18n/routing'
 
 export const dynamic = 'force-static'
@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const categories = getAllCategories(locale)
     categories.forEach(category => {
       routes.push({
-        url: `${baseUrl}/${locale}/categories/${encodeURIComponent(category)}`,
+        url: `${baseUrl}/${locale}/categories/${getCategorySlug(category)}`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.6,
@@ -62,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const tags = getAllTags(locale)
     tags.forEach(tag => {
       routes.push({
-        url: `${baseUrl}/${locale}/tags/${encodeURIComponent(tag)}`,
+        url: `${baseUrl}/${locale}/tags/${getTagSlug(tag)}`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: 0.5,

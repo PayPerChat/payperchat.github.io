@@ -1,4 +1,4 @@
-import { getPostsByCategory, getAllCategories } from '@/lib/posts';
+import { getPostsByCategory, getAllCategorySlugs, getCategoryBySlug, getTagSlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -17,11 +17,11 @@ export async function generateStaticParams() {
   const paths = [];
   
   for (const locale of routing.locales) {
-    const categories = getAllCategories(locale);
-    for (const category of categories) {
+    const categoryData = getAllCategorySlugs(locale);
+    for (const { slug } of categoryData) {
       paths.push({
         locale,
-        category: encodeURIComponent(category),
+        category: slug,
       });
     }
   }
@@ -31,18 +31,30 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps) {
   const { locale, category } = await params;
-  const decodedCategory = decodeURIComponent(category);
+  const categoryName = getCategoryBySlug(category, locale);
+  
+  if (!categoryName) {
+    return {
+      title: 'Category Not Found - PayPerChat Blog',
+      description: 'The requested category could not be found.',
+    };
+  }
   
   return {
-    title: `${decodedCategory} - PayPerChat Blog`,
-    description: `${decodedCategory} 카테고리의 모든 글을 확인하세요`,
+    title: `${categoryName} - PayPerChat Blog`,
+    description: `${categoryName} 카테고리의 모든 글을 확인하세요`,
   };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, category } = await params;
-  const decodedCategory = decodeURIComponent(category);
-  const posts = getPostsByCategory(decodedCategory, locale);
+  const categoryName = getCategoryBySlug(category, locale);
+  
+  if (!categoryName) {
+    notFound();
+  }
+  
+  const posts = getPostsByCategory(categoryName, locale);
   
   if (posts.length === 0) {
     notFound();
@@ -60,10 +72,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {locale === 'ko' ? '카테고리' : 'Categories'}
           </Link>
           <span className="mx-2">/</span>
-          <span>{decodedCategory}</span>
+          <span>{categoryName}</span>
         </nav>
         
-        <h1 className="text-4xl font-bold mb-4">{decodedCategory}</h1>
+        <h1 className="text-4xl font-bold mb-4">{categoryName}</h1>
         <p className="text-gray-600">
           {locale === 'ko' 
             ? `${posts.length}개의 글이 있습니다.`
@@ -91,7 +103,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     <span 
                       key={cat}
                       className={`text-xs px-2 py-1 rounded ${
-                        cat === decodedCategory 
+                        cat === categoryName 
                           ? 'bg-blue-100 text-blue-800' 
                           : 'bg-gray-100 text-gray-700'
                       }`}
@@ -129,7 +141,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     {post.tags.slice(0, 4).map((tag) => (
                       <Link
                         key={tag}
-                        href={`/${locale}/tags/${encodeURIComponent(tag)}`}
+                        href={`/${locale}/tags/${getTagSlug(tag)}`}
                         className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded hover:bg-gray-200 transition-colors"
                       >
                         #{tag}

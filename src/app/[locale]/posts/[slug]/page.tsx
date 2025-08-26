@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug } from '@/lib/posts';
+import { getAllPosts, getPostBySlug, getCategorySlug, getTagSlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -90,7 +90,7 @@ export default async function PostPage({ params }: PostPageProps) {
           {post.categories.map((category) => (
             <Link
               key={category}
-              href={`/${locale}/categories/${encodeURIComponent(category)}`}
+              href={`/${locale}/categories/${getCategorySlug(category)}`}
               className="bg-blue-100 text-blue-800 text-sm px-4 py-2 rounded-full hover:bg-blue-200 transition-all duration-200 font-medium"
             >
               {category}
@@ -152,7 +152,7 @@ export default async function PostPage({ params }: PostPageProps) {
             {post.tags.map((tag) => (
               <Link
                 key={tag}
-                href={`/${locale}/tags/${encodeURIComponent(tag)}`}
+                href={`/${locale}/tags/${getTagSlug(tag)}`}
                 className="bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full hover:bg-gray-200 hover:text-gray-900 transition-all duration-200 font-medium"
               >
                 #{tag}

@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories } from '@/lib/posts';
+import { getAllPosts, getAllCategories, getCategorySlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -142,7 +142,7 @@ export default async function HomePage({ params }: HomePageProps) {
             {categories.map((category) => (
               <Link
                 key={category}
-                href={`/${locale}/categories/${encodeURIComponent(category)}`}
+                href={`/${locale}/categories/${getCategorySlug(category)}`}
                 className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100"
               >
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/40" />

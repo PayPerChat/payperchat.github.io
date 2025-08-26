@@ -1,4 +1,4 @@
-import { getAllTags, getPostsByTag } from '@/lib/posts';
+import { getAllTags, getPostsByTag, getTagSlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -44,7 +44,7 @@ export default async function TagsPage({ params }: TagsPageProps) {
           return (
             <Link
               key={tag}
-              href={`/${locale}/tags/${encodeURIComponent(tag)}`}
+              href={`/${locale}/tags/${getTagSlug(tag)}`}
               className="group card hover:shadow-lg transition-all duration-300 flex items-center gap-3 px-6 py-4 min-w-fit"
             >
               <span className="text-gray-700 group-hover:text-blue-600 transition-colors font-medium text-lg">

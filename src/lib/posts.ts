@@ -4,6 +4,15 @@ import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import {Locale} from '@/i18n/request';
 
+// Create URL-friendly slug from string
+function createSlug(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+}
+
 export interface PostData {
   slug: string;
   title: string;
@@ -114,6 +123,19 @@ export function getAllCategories(locale: Locale): string[] {
   return Array.from(categories).sort();
 }
 
+export function getAllCategorySlugs(locale: Locale): {name: string, slug: string}[] {
+  const categories = getAllCategories(locale);
+  return categories.map(category => ({
+    name: category,
+    slug: createSlug(category)
+  }));
+}
+
+export function getCategoryBySlug(slug: string, locale: Locale): string | null {
+  const categories = getAllCategories(locale);
+  return categories.find(category => createSlug(category) === slug) || null;
+}
+
 export function getAllTags(locale: Locale): string[] {
   const allPosts = getAllPosts(locale);
   const tags = new Set<string>();
@@ -125,6 +147,27 @@ export function getAllTags(locale: Locale): string[] {
   });
   
   return Array.from(tags).sort();
+}
+
+export function getAllTagSlugs(locale: Locale): {name: string, slug: string}[] {
+  const tags = getAllTags(locale);
+  return tags.map(tag => ({
+    name: tag,
+    slug: createSlug(tag)
+  }));
+}
+
+export function getTagBySlug(slug: string, locale: Locale): string | null {
+  const tags = getAllTags(locale);
+  return tags.find(tag => createSlug(tag) === slug) || null;
+}
+
+export function getCategorySlug(categoryName: string): string {
+  return createSlug(categoryName);
+}
+
+export function getTagSlug(tagName: string): string {
+  return createSlug(tagName);
 }
 
 export function getStaticPaths(locales: Locale[]) {

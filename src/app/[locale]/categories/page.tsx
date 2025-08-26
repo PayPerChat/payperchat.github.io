@@ -1,4 +1,4 @@
-import { getAllCategories, getPostsByCategory } from '@/lib/posts';
+import { getAllCategories, getPostsByCategory, getCategorySlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -44,7 +44,7 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
           return (
             <Link
               key={category}
-              href={`/${locale}/categories/${encodeURIComponent(category)}`}
+              href={`/${locale}/categories/${getCategorySlug(category)}`}
               className="group card hover:shadow-xl transition-all duration-300 p-8"
             >
               <div className="flex items-center justify-between mb-6">

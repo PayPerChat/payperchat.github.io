@@ -8,7 +8,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import JsonLd from '@/components/JsonLd';
 
-export const dynamic = process.env.NODE_ENV === 'production' ? 'force-static' : 'auto';
+export const dynamic = 'force-static';
 
 interface PostPageProps {
   params: Promise<{ 

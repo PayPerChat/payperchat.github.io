@@ -1,4 +1,4 @@
-import { getAllTags, getPostsByTag, getTagSlug } from '@/lib/posts';
+import { getAllTagDisplayNames, getPostsByTag, getTagSlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: TagsPageProps) {
 
 export default async function TagsPage({ params }: TagsPageProps) {
   const { locale } = await params;
-  const tags = getAllTags(locale);
+  const tags = getAllTagDisplayNames(locale);
 
   return (
     <div className="container mx-auto py-16 lg:py-20 px-6">
@@ -39,16 +39,16 @@ export default async function TagsPage({ params }: TagsPageProps) {
 
       <div className="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
         {tags.map((tag) => {
-          const posts = getPostsByTag(tag, locale);
+          const posts = getPostsByTag(tag.slug, locale);
           
           return (
             <Link
-              key={tag}
-              href={`/${locale}/tags/${getTagSlug(tag)}`}
+              key={tag.slug}
+              href={`/${locale}/tags/${tag.slug}`}
               className="group card hover:shadow-lg transition-all duration-300 flex items-center gap-3 px-6 py-4 min-w-fit"
             >
               <span className="text-gray-700 group-hover:text-blue-600 transition-colors font-medium text-lg">
-                #{tag}
+                #{tag.displayName}
               </span>
               <span className="bg-gray-100 group-hover:bg-blue-100 text-gray-600 group-hover:text-blue-800 text-sm px-3 py-1 rounded-full font-medium transition-all duration-300">
                 {posts.length}

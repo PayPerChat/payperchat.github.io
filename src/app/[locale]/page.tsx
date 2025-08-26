@@ -1,4 +1,5 @@
-import { getAllPosts, getAllCategories, getCategorySlug } from '@/lib/posts';
+import { getAllPosts, getAllCategoryDisplayNames, getCategorySlug } from '@/lib/posts';
+import { getCategoryDisplayName } from '@/lib/mappings';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -31,7 +32,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   const posts = getAllPosts(locale);
   const recentPosts = posts.slice(0, 6);
-  const categories = getAllCategories(locale);
+  const categories = getAllCategoryDisplayNames(locale);
 
   return (
     <div className="min-h-screen bg-white">
@@ -141,8 +142,8 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {categories.map((category) => (
               <Link
-                key={category}
-                href={`/${locale}/categories/${getCategorySlug(category)}`}
+                key={category.slug}
+                href={`/${locale}/categories/${category.slug}`}
                 className="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-white px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100"
               >
                 <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900/80 via-gray-900/40" />
@@ -159,7 +160,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   </div>
                 </div>
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-white group-hover:text-blue-200 transition-colors">
-                  {category}
+                  {category.displayName}
                 </h3>
               </Link>
             ))}
@@ -205,12 +206,12 @@ export default async function HomePage({ params }: HomePageProps) {
                         {new Date(post.date).toLocaleDateString(locale === 'ko' ? 'ko-KR' : 'en-US')}
                       </time>
                       <div className="flex flex-wrap gap-1">
-                        {post.categories.map((category) => (
+                        {post.categories.map((categorySlug) => (
                           <span 
-                            key={category}
+                            key={categorySlug}
                             className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                           >
-                            {category}
+                            {getCategoryDisplayName(categorySlug, locale)}
                           </span>
                         ))}
                       </div>

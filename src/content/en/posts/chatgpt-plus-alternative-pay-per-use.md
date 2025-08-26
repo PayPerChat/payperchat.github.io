@@ -3,7 +3,7 @@ title: "Save 70% Monthly: PayPerChat as ChatGPT Plus Alternative with Pay-Per-Us
 excerpt: "Learn how to dramatically reduce AI costs by switching from $20/month ChatGPT Plus subscription to PayPerChat's pay-per-use model."
 date: "2025-01-21"
 categories:
-  - "Cost Optimization"
+  - "cost-optimization"
 tags:
   - "payperchat"
   - "chatgpt-plus"

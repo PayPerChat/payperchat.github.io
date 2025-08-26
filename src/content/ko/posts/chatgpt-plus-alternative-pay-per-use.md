@@ -3,12 +3,12 @@ title: "ChatGPT Plus 대신 종량제 AI 서비스 PayPerChat으로 월 70% 절�
 excerpt: "월 20달러 ChatGPT Plus 구독 대신 사용한 만큼만 지불하는 PayPerChat으로 AI 비용을 대폭 절약하는 방법을 상세히 알아봅니다."
 date: "2025-01-21"
 categories:
-  - "비용 최적화"
+  - "cost-optimization"
 tags:
   - "payperchat"
   - "chatgpt-plus"
-  - "ai-비용절약"
-  - "종량제"
+  - "ai-cost-savings"
+  - "pay-per-use"
 author: "PayPerChat"
 image: "/assets/images/posts/chatgpt-alternative.png"
 ---

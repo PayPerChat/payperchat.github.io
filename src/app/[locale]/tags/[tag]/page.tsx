@@ -1,4 +1,5 @@
 import { getPostsByTag, getAllTagSlugs, getTagBySlug, getTagSlug, getCategorySlug } from '@/lib/posts';
+import { getTagDisplayName, getCategoryDisplayName } from '@/lib/mappings';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -31,30 +32,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TagPageProps) {
   const { locale, tag } = await params;
-  const tagName = getTagBySlug(tag, locale);
-  
-  if (!tagName) {
-    return {
-      title: 'Tag Not Found - PayPerChat Blog',
-      description: 'The requested tag could not be found.',
-    };
-  }
+  const tagDisplayName = getTagDisplayName(tag, locale);
   
   return {
-    title: `#${tagName} - PayPerChat Blog`,
-    description: `${tagName} 태그가 포함된 모든 글을 확인하세요`,
+    title: `#${tagDisplayName} - PayPerChat Blog`,
+    description: `${tagDisplayName} 태그가 포함된 모든 글을 확인하세요`,
   };
 }
 
 export default async function TagPage({ params }: TagPageProps) {
   const { locale, tag } = await params;
-  const tagName = getTagBySlug(tag, locale);
-  
-  if (!tagName) {
-    notFound();
-  }
-  
-  const posts = getPostsByTag(tagName, locale);
+  const tagDisplayName = getTagDisplayName(tag, locale);
+  const posts = getPostsByTag(tag, locale);
   
   if (posts.length === 0) {
     notFound();
@@ -72,10 +61,10 @@ export default async function TagPage({ params }: TagPageProps) {
             {locale === 'ko' ? '태그' : 'Tags'}
           </Link>
           <span className="mx-2">/</span>
-          <span>#{tagName}</span>
+          <span>#{tagDisplayName}</span>
         </nav>
         
-        <h1 className="text-4xl font-bold mb-4">#{tagName}</h1>
+        <h1 className="text-4xl font-bold mb-4">#{tagDisplayName}</h1>
         <p className="text-gray-600">
           {locale === 'ko' 
             ? `이 태그가 포함된 ${posts.length}개의 글이 있습니다.`
@@ -99,13 +88,13 @@ export default async function TagPage({ params }: TagPageProps) {
               )}
               <div className={post.image ? 'md:w-2/3' : 'w-full'}>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {post.categories.map((category) => (
+                  {post.categories.map((categorySlug) => (
                     <Link
-                      key={category}
-                      href={`/${locale}/categories/${getCategorySlug(category)}`}
+                      key={categorySlug}
+                      href={`/${locale}/categories/${categorySlug}`}
                       className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded hover:bg-blue-200 transition-colors"
                     >
-                      {category}
+                      {getCategoryDisplayName(categorySlug, locale)}
                     </Link>
                   ))}
                 </div>
@@ -134,17 +123,17 @@ export default async function TagPage({ params }: TagPageProps) {
                 </div>
                 
                 <div className="flex flex-wrap gap-1 mt-3">
-                  {post.tags.map((postTag) => (
+                  {post.tags.map((postTagSlug) => (
                     <Link
-                      key={postTag}
-                      href={`/${locale}/tags/${getTagSlug(postTag)}`}
+                      key={postTagSlug}
+                      href={`/${locale}/tags/${postTagSlug}`}
                       className={`text-xs px-2 py-1 rounded transition-colors ${
-                        postTag === tagName 
+                        postTagSlug === tag 
                           ? 'bg-blue-100 text-blue-800' 
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      #{postTag}
+                      #{getTagDisplayName(postTagSlug, locale)}
                     </Link>
                   ))}
                 </div>

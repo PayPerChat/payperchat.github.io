@@ -3,6 +3,14 @@ import path from 'path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import {Locale} from '@/i18n/request';
+import { 
+  getCategoryDisplayName, 
+  getTagDisplayName, 
+  findCategorySlugByName, 
+  findTagSlugByName,
+  getAllCategoryMappingSlugs,
+  getAllTagMappingSlugs
+} from './mappings';
 
 // Create URL-friendly slug from string
 function createSlug(text: string): string {
@@ -115,12 +123,20 @@ export function getAllCategories(locale: Locale): string[] {
   const categories = new Set<string>();
   
   allPosts.forEach((post) => {
-    post.categories.forEach((category) => {
-      categories.add(category);
+    post.categories.forEach((categorySlug) => {
+      categories.add(categorySlug);
     });
   });
   
   return Array.from(categories).sort();
+}
+
+export function getAllCategoryDisplayNames(locale: Locale): {slug: string, displayName: string}[] {
+  const categorySlugs = getAllCategories(locale);
+  return categorySlugs.map(slug => ({
+    slug,
+    displayName: getCategoryDisplayName(slug, locale)
+  }));
 }
 
 export function getAllCategorySlugs(locale: Locale): {name: string, slug: string}[] {
@@ -141,12 +157,20 @@ export function getAllTags(locale: Locale): string[] {
   const tags = new Set<string>();
   
   allPosts.forEach((post) => {
-    post.tags.forEach((tag) => {
-      tags.add(tag);
+    post.tags.forEach((tagSlug) => {
+      tags.add(tagSlug);
     });
   });
   
   return Array.from(tags).sort();
+}
+
+export function getAllTagDisplayNames(locale: Locale): {slug: string, displayName: string}[] {
+  const tagSlugs = getAllTags(locale);
+  return tagSlugs.map(slug => ({
+    slug,
+    displayName: getTagDisplayName(slug, locale)
+  }));
 }
 
 export function getAllTagSlugs(locale: Locale): {name: string, slug: string}[] {

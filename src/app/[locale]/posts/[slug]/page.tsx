@@ -1,4 +1,5 @@
 import { getAllPosts, getPostBySlug, getCategorySlug, getTagSlug } from '@/lib/posts';
+import { getCategoryDisplayName, getTagDisplayName } from '@/lib/mappings';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -87,13 +88,13 @@ export default async function PostPage({ params }: PostPageProps) {
       {/* Header */}
       <header className="mb-12">
         <div className="flex flex-wrap gap-3 mb-6">
-          {post.categories.map((category) => (
+          {post.categories.map((categorySlug) => (
             <Link
-              key={category}
-              href={`/${locale}/categories/${getCategorySlug(category)}`}
+              key={categorySlug}
+              href={`/${locale}/categories/${categorySlug}`}
               className="bg-blue-100 text-blue-800 text-sm px-4 py-2 rounded-full hover:bg-blue-200 transition-all duration-200 font-medium"
             >
-              {category}
+              {getCategoryDisplayName(categorySlug, locale)}
             </Link>
           ))}
         </div>
@@ -149,13 +150,13 @@ export default async function PostPage({ params }: PostPageProps) {
             {locale === 'ko' ? '태그' : 'Tags'}
           </h3>
           <div className="flex flex-wrap gap-3">
-            {post.tags.map((tag) => (
+            {post.tags.map((tagSlug) => (
               <Link
-                key={tag}
-                href={`/${locale}/tags/${getTagSlug(tag)}`}
+                key={tagSlug}
+                href={`/${locale}/tags/${tagSlug}`}
                 className="bg-gray-100 text-gray-700 text-sm px-4 py-2 rounded-full hover:bg-gray-200 hover:text-gray-900 transition-all duration-200 font-medium"
               >
-                #{tag}
+                #{getTagDisplayName(tagSlug, locale)}
               </Link>
             ))}
           </div>

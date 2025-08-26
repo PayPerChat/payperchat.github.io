@@ -1,4 +1,4 @@
-import { getAllCategories, getPostsByCategory, getCategorySlug } from '@/lib/posts';
+import { getAllCategoryDisplayNames, getPostsByCategory, getCategorySlug } from '@/lib/posts';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: CategoriesPageProps) {
 
 export default async function CategoriesPage({ params }: CategoriesPageProps) {
   const { locale } = await params;
-  const categories = getAllCategories(locale);
+  const categories = getAllCategoryDisplayNames(locale);
 
   return (
     <div className="container mx-auto py-16 lg:py-20 px-6">
@@ -39,17 +39,17 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category) => {
-          const posts = getPostsByCategory(category, locale);
+          const posts = getPostsByCategory(category.slug, locale);
           
           return (
             <Link
-              key={category}
-              href={`/${locale}/categories/${getCategorySlug(category)}`}
+              key={category.slug}
+              href={`/${locale}/categories/${category.slug}`}
               className="group card hover:shadow-xl transition-all duration-300 p-8"
             >
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  {category}
+                  {category.displayName}
                 </h2>
                 <span className="bg-blue-100 group-hover:bg-blue-200 text-blue-800 text-sm px-3 py-1 rounded-full font-medium transition-all duration-300">
                   {posts.length}

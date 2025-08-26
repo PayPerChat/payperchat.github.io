@@ -1,4 +1,5 @@
 import { getPostsByCategory, getAllCategorySlugs, getCategoryBySlug, getTagSlug } from '@/lib/posts';
+import { getCategoryDisplayName, getTagDisplayName } from '@/lib/mappings';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
@@ -31,30 +32,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: CategoryPageProps) {
   const { locale, category } = await params;
-  const categoryName = getCategoryBySlug(category, locale);
-  
-  if (!categoryName) {
-    return {
-      title: 'Category Not Found - PayPerChat Blog',
-      description: 'The requested category could not be found.',
-    };
-  }
+  const categoryDisplayName = getCategoryDisplayName(category, locale);
   
   return {
-    title: `${categoryName} - PayPerChat Blog`,
-    description: `${categoryName} 카테고리의 모든 글을 확인하세요`,
+    title: `${categoryDisplayName} - PayPerChat Blog`,
+    description: `${categoryDisplayName} 카테고리의 모든 글을 확인하세요`,
   };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, category } = await params;
-  const categoryName = getCategoryBySlug(category, locale);
-  
-  if (!categoryName) {
-    notFound();
-  }
-  
-  const posts = getPostsByCategory(categoryName, locale);
+  const categoryDisplayName = getCategoryDisplayName(category, locale);
+  const posts = getPostsByCategory(category, locale);
   
   if (posts.length === 0) {
     notFound();
@@ -72,10 +61,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {locale === 'ko' ? '카테고리' : 'Categories'}
           </Link>
           <span className="mx-2">/</span>
-          <span>{categoryName}</span>
+          <span>{categoryDisplayName}</span>
         </nav>
         
-        <h1 className="text-4xl font-bold mb-4">{categoryName}</h1>
+        <h1 className="text-4xl font-bold mb-4">{categoryDisplayName}</h1>
         <p className="text-gray-600">
           {locale === 'ko' 
             ? `${posts.length}개의 글이 있습니다.`
@@ -99,16 +88,16 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               )}
               <div className={post.image ? 'md:w-2/3' : 'w-full'}>
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {post.categories.map((cat) => (
+                  {post.categories.map((catSlug) => (
                     <span 
-                      key={cat}
+                      key={catSlug}
                       className={`text-xs px-2 py-1 rounded ${
-                        cat === categoryName 
+                        catSlug === category 
                           ? 'bg-blue-100 text-blue-800' 
                           : 'bg-gray-100 text-gray-700'
                       }`}
                     >
-                      {cat}
+                      {getCategoryDisplayName(catSlug, locale)}
                     </span>
                   ))}
                 </div>
@@ -138,13 +127,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 
                 {post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-3">
-                    {post.tags.slice(0, 4).map((tag) => (
+                    {post.tags.slice(0, 4).map((tagSlug) => (
                       <Link
-                        key={tag}
-                        href={`/${locale}/tags/${getTagSlug(tag)}`}
+                        key={tagSlug}
+                        href={`/${locale}/tags/${tagSlug}`}
                         className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded hover:bg-gray-200 transition-colors"
                       >
-                        #{tag}
+                        #{getTagDisplayName(tagSlug, locale)}
                       </Link>
                     ))}
                     {post.tags.length > 4 && (

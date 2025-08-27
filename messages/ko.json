@@ -1,16 +1,151 @@
 {
+  "common": {
+    "locale": "ko_KR",
+    "siteName": "PayPerChat 블로그",
+    "baseTitle": "PayPerChat 블로그",
+    "baseDescription": "AI 비용 최적화와 LLM 사용법 가이드 - 종량제 AI 서비스로 70% 절약하세요",
+    "keywords": ["AI 비용절약", "ChatGPT 대안", "종량제 AI", "LLM 최적화", "PayPerChat"]
+  },
   "layout": {
     "title": "PayPerChat 블로그"
+  },
+  "footer": {
+    "title": "PayPerChat 블로그",
+    "description": "AI 비용 최적화와 LLM 사용법 가이드",
+    "links": {
+      "payPerChat": "PayPerChat",
+      "pricing": "요금제",
+      "faq": "자주 묻는 질문"
+    },
+    "copyright": "© {year} PayPerChat. 모든 권리 보유."
   },
   "navigation": {
     "home": "홈",
     "categories": "카테고리",
     "tags": "태그"
   },
+  "actions": {
+    "viewMore": "더 보기",
+    "exploreMore": "자세히 보기",
+    "getStarted": "무료로 시작하기",
+    "watchGuide": "가이드 보기",
+    "viewAllPosts": "모든 포스트 보기",
+    "viewAllCategories": "모든 카테고리 보기",
+    "viewAllTags": "모든 태그 보기"
+  },
+  "post": {
+    "by": "글쓴이:",
+    "more": "더 보기",
+    "noPosts": "게시글이 없습니다.",
+    "notFound": {
+      "title": "게시글을 찾을 수 없습니다",
+      "description": "요청하신 게시글을 찾을 수 없습니다."
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "badge": "월 70% 비용 절약 가능",
+        "title1": "AI 비용을",
+        "title2": "최적화하세요",
+        "description": "월 구독료 대신 사용한 만큼만 지불하는 PayPerChat으로 ChatGPT Plus보다 똑똑하게 AI를 활용하세요",
+        "trustBadge": "이미 수천 명이 비용을 절약하고 있습니다",
+        "satisfaction": "만족도",
+        "costSavings": "비용 절약"
+      },
+      "categories": {
+        "title": "주제별 탐색",
+        "description": "관심 있는 주제를 선택해서 관련 글들을 찾아보세요"
+      },
+      "insights": {
+        "title": "최신 인사이트",
+        "description": "AI 비용 최적화와 활용법에 대한 최신 정보를 확인해보세요",
+        "viewAllButton": "모든 글 보기"
+      },
+      "promotion": {
+        "title": "스마트한 AI 비용 관리",
+        "description": "PayPerChat으로 고정 구독료의 부담에서 벗어나세요",
+        "features": {
+          "savings": {
+            "title": "최대 70% 절약",
+            "description": "사용량에 따른 합리적 요금제로 불필요한 비용을 줄이세요"
+          },
+          "models": {
+            "title": "모든 AI 모델 지원",
+            "description": "GPT, Claude, Gemini 등 최신 AI 모델들을 한 곳에서 이용"
+          },
+          "instant": {
+            "title": "즉시 시작 가능",
+            "description": "복잡한 설정 없이 몇 초만에 AI 사용을 시작하세요"
+          }
+        },
+        "ctaButton": "PayPerChat 무료 체험하기"
+      }
+    },
+    "categories": {
+      "title": "카테고리",
+      "description": "관심 있는 주제별로 글을 찾아보세요",
+      "recentPosts": "최근 글", 
+      "noCategories": "카테고리가 없습니다.",
+      "postsAvailable": "{count}개의 글이 있습니다",
+      "postsFound": "{count}개의 글을 찾았습니다.",
+      "moreText": "더 보기"
+    },
+    "tags": {
+      "title": "태그",
+      "description": "태그별로 관련 글을 찾아보세요",
+      "noTags": "태그가 없습니다."
+    },
+    "tag": {
+      "postsAvailable": "이 태그가 포함된 {count}개의 글이 있습니다."
+    },
+    "posts": {
+      "title": "모든 포스트",
+      "readingTime": "분 읽기"
+    },
+    "post": {
+      "tags": "태그",
+      "promotion": {
+        "title": "더 저렴하게 AI 사용하기",
+        "description": "이 글이 도움이 되었다면, PayPerChat으로 월 구독료 없이 AI를 사용해보세요!",
+        "ctaButton": "PayPerChat 무료 체험"
+      },
+      "navigation": {
+        "previousPost": "이전 글",
+        "nextPost": "다음 글",
+        "backToHome": "홈으로"
+      }
+    }
+  },
+  "listPages": {
+    "categories": "모든 카테고리",
+    "tags": "모든 태그",
+    "posts": "모든 포스트"
+  },
+  "listPageDescriptions": {
+    "categories": "관심 있는 주제별로 AI 최적화 가이드를 찾아보세요",
+    "tags": "태그별로 관련 AI 가이드를 찾아보세요",
+    "posts": "AI 비용 최적화와 LLM 사용법에 대한 모든 가이드를 확인하세요"
+  },
+  "categoryDescriptions": {
+    "cost-optimization": "AI 비용을 효율적으로 관리하는 방법",
+    "artificial-intelligence": "인공지능의 기본 개념과 활용 방법",
+    "tutorials": "단계별 AI 사용법과 실무 가이드",
+    "productivity": "AI로 업무 효율성을 높이는 방법",
+    "news": "최신 AI 뉴스와 업데이트",
+    "reviews": "AI 서비스 비교와 선택 가이드",
+    "general": "AI 관련 유용한 정보와 가이드"
+  },
+  "test": {
+    "title": "한국어 테스트 페이지",
+    "description": "이 페이지가 보인다면 Next.js 라우팅이 정상 작동합니다.",
+    "goToEnglish": "영어 페이지로 이동",
+    "goToHomepage": "실제 한국어 홈페이지로 이동"
+  },
   "metadata": {
     "home": {
-      "title": "PayPerChat 블로그 - AI 비용 최적화 가이드",
-      "description": "ChatGPT Plus 구독 대신 종량제로 더 저렴하게 AI를 사용하는 방법을 알아보세요"
+      "title": "AI 비용 70% 절약하는 PayPerChat 블로그",
+      "description": "ChatGPT Plus 대신 종량제 AI 서비스로 월 70% 절약하세요. LLM 최적화와 비용 효율적인 AI 사용법을 알아보세요."
     },
     "posts": {
       "title": "모든 포스트 - PayPerChat 블로그",

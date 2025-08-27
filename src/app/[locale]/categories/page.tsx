@@ -20,18 +20,16 @@ export async function generateMetadata({ params }: CategoriesPageProps) {
 export default async function CategoriesPage({ params }: CategoriesPageProps) {
   const { locale } = await params;
   const categories = getAllCategoryDisplayNames(locale);
+  const t = await getTranslations();
 
   return (
     <div className="container mx-auto py-16 lg:py-20 px-6">
       <header className="mb-20 text-center pt-8">
         <h1 className="text-5xl font-bold mb-6 text-gray-900">
-          {locale === 'ko' ? '카테고리' : 'Categories'}
+          {t('pages.categories.title')}
         </h1>
         <p className="text-gray-600 text-xl max-w-2xl mx-auto">
-          {locale === 'ko' 
-            ? '관심 있는 주제별로 글을 찾아보세요'
-            : 'Browse articles by topic of interest'
-          }
+          {t('pages.categories.description')}
         </p>
       </header>
 
@@ -55,16 +53,13 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
               </div>
               
               <p className="text-gray-600 text-base mb-6 font-medium">
-                {locale === 'ko' 
-                  ? `${posts.length}개의 글이 있습니다`
-                  : `${posts.length} post${posts.length !== 1 ? 's' : ''} available`
-                }
+                {t('pages.categories.postsAvailable', { count: posts.length })}
               </p>
 
               {posts.length > 0 && (
                 <div className="space-y-3">
                   <p className="text-gray-500 text-sm font-semibold uppercase tracking-wide">
-                    {locale === 'ko' ? '최근 글' : 'Recent Posts'}
+                    {t('pages.categories.recentPosts')}
                   </p>
                   <div className="space-y-2">
                     {posts.slice(0, 2).map((post) => (
@@ -74,7 +69,7 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
                     ))}
                     {posts.length > 2 && (
                       <p className="text-xs text-gray-500 font-medium pt-1">
-                        +{posts.length - 2} {locale === 'ko' ? '더 보기' : 'more'}
+                        +{posts.length - 2} {t('pages.categories.moreText')}
                       </p>
                     )}
                   </div>
@@ -90,7 +85,7 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
           <div className="bg-gray-50 rounded-2xl p-12 max-w-md mx-auto">
             <div className="text-gray-400 text-6xl mb-4">📂</div>
             <p className="text-gray-500 text-lg font-medium">
-              {locale === 'ko' ? '카테고리가 없습니다.' : 'No categories found.'}
+              {t('pages.categories.noCategories')}
             </p>
           </div>
         </div>
@@ -101,7 +96,7 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
           href={`/${locale}/posts`}
           className="btn btn-secondary inline-flex items-center gap-2"
         >
-          {locale === 'ko' ? '모든 포스트 보기' : 'View All Posts'}
+          {t('actions.viewAllPosts')}
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>

@@ -1,5 +1,6 @@
 import { getAllPosts, getAllCategories, getAllTags, getCategorySlug, getTagSlug } from '@/lib/posts';
 import { generateListPageMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { formatDate } from '@/lib/dateUtils';
 import { Locale } from '@/i18n/request';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
@@ -22,11 +23,12 @@ export default async function PostsPage({ params }: PostsPageProps) {
   const posts = getAllPosts(locale);
   const categories = getAllCategories(locale);
   const tags = getAllTags(locale);
-
+  const t = await getTranslations();
+  
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       <h1 className="text-4xl font-bold mb-8">
-        {locale === 'ko' ? '모든 포스트' : 'All Posts'}
+        {t('pages.posts.title')}
       </h1>
 
       {/* Filter Sidebar */}
@@ -35,7 +37,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
           {/* Categories */}
           <div className="mb-8">
             <h2 className="text-xl font-bold mb-4">
-              {locale === 'ko' ? '카테고리' : 'Categories'}
+              {t('navigation.categories')}
             </h2>
             <div className="space-y-2">
               {categories.map((category) => (
@@ -53,7 +55,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
           {/* Tags */}
           <div>
             <h2 className="text-xl font-bold mb-4">
-              {locale === 'ko' ? '태그' : 'Tags'}
+              {t('navigation.tags')}
             </h2>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
@@ -102,7 +104,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
                     </h2>
                     <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
                     <div className="flex justify-between items-center text-sm text-gray-500">
-                      <span>{new Date(post.date).toLocaleDateString(locale === 'ko' ? 'ko-KR' : 'en-US')}</span>
+                      <span>{formatDate(post.date, locale)}</span>
                       <span>{post.readingTime}</span>
                     </div>
                     <div className="flex flex-wrap gap-1 mt-3">
@@ -116,7 +118,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
                       ))}
                       {post.tags.length > 3 && (
                         <span className="text-gray-400 text-xs">
-                          +{post.tags.length - 3} more
+                          +{post.tags.length - 3} {t('post.more')}
                         </span>
                       )}
                     </div>
@@ -129,7 +131,7 @@ export default async function PostsPage({ params }: PostsPageProps) {
           {posts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-gray-500 text-lg">
-                {locale === 'ko' ? '포스트가 없습니다.' : 'No posts found.'}
+                {t('post.noPosts')}
               </p>
             </div>
           )}

@@ -1,8 +1,10 @@
 import { getAllPosts, getPostBySlug, getCategorySlug, getTagSlug } from '@/lib/posts';
 import { getCategoryDisplayName, getTagDisplayName } from '@/lib/mappings';
 import { generatePostMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { formatDateWithOptions } from '@/lib/dateUtils';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
@@ -39,8 +41,8 @@ export async function generateMetadata({ params }: PostPageProps) {
   
   if (!post) {
     return {
-      title: 'Post Not Found',
-      description: 'The requested post could not be found.',
+      title: locale === 'ko' ? '게시글을 찾을 수 없습니다' : 'Post Not Found',
+      description: locale === 'ko' ? '요청하신 게시글을 찾을 수 없습니다.' : 'The requested post could not be found.',
     };
   }
 
@@ -51,6 +53,7 @@ export async function generateMetadata({ params }: PostPageProps) {
 export default async function PostPage({ params }: PostPageProps) {
   const { locale, slug } = await params;
   const post = getPostBySlug(slug, locale);
+  const t = await getTranslations();
   
   if (!post) {
     notFound();
@@ -83,11 +86,7 @@ export default async function PostPage({ params }: PostPageProps) {
         
         <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
           <time dateTime={post.date} className="font-medium">
-            {new Date(post.date).toLocaleDateString(locale === 'ko' ? 'ko-KR' : 'en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
+            {formatDateWithOptions(post.date, locale)}
           </time>
           <span className="text-gray-400">•</span>
           <span className="font-medium">{post.readingTime}</span>
@@ -127,7 +126,7 @@ export default async function PostPage({ params }: PostPageProps) {
       {post.tags && post.tags.length > 0 && (
         <div className="mb-12">
           <h3 className="text-xl font-semibold mb-6 text-gray-900">
-            {locale === 'ko' ? '태그' : 'Tags'}
+            {t('pages.post.tags')}
           </h3>
           <div className="flex flex-wrap gap-3">
             {post.tags.map((tagSlug) => (
@@ -148,20 +147,17 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="text-center">
           <div className="text-4xl mb-4">💡</div>
           <h3 className="text-3xl font-bold mb-6 text-gray-900">
-            {locale === 'ko' ? '더 저렴하게 AI 사용하기' : 'Use AI More Affordably'}
+            {t('pages.post.promotion.title')}
           </h3>
           <p className="text-gray-700 mb-8 text-lg leading-relaxed max-w-2xl mx-auto">
-            {locale === 'ko' 
-              ? '이 글이 도움이 되었다면, PayPerChat으로 월 구독료 없이 AI를 사용해보세요!'
-              : 'If this article was helpful, try using AI without monthly subscriptions with PayPerChat!'
-            }
+            {t('pages.post.promotion.description')}
           </p>
           <Link 
             href="https://payperchat.org" 
             target="_blank"
             className="btn btn-primary text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            {locale === 'ko' ? 'PayPerChat 무료 체험' : 'Try PayPerChat Free'}
+            {t('pages.post.promotion.ctaButton')}
           </Link>
         </div>
       </div>
@@ -174,7 +170,7 @@ export default async function PostPage({ params }: PostPageProps) {
             className="group card p-6 hover:shadow-lg transition-all duration-300"
           >
             <p className="text-sm text-gray-500 mb-2 font-medium">
-              {locale === 'ko' ? '이전 글' : 'Previous Post'}
+              {t('pages.post.navigation.previousPost')}
             </p>
             <p className="text-blue-600 group-hover:text-blue-700 transition-colors font-semibold leading-snug">
               ← {previousPost.title}
@@ -189,7 +185,7 @@ export default async function PostPage({ params }: PostPageProps) {
             href={`/${locale}`}
             className="btn btn-secondary"
           >
-            {locale === 'ko' ? '홈으로' : 'Back to Home'}
+            {t('pages.post.navigation.backToHome')}
           </Link>
         </div>
 
@@ -199,7 +195,7 @@ export default async function PostPage({ params }: PostPageProps) {
             className="group card p-6 hover:shadow-lg transition-all duration-300 text-right"
           >
             <p className="text-sm text-gray-500 mb-2 font-medium">
-              {locale === 'ko' ? '다음 글' : 'Next Post'}
+              {t('pages.post.navigation.nextPost')}
             </p>
             <p className="text-blue-600 group-hover:text-blue-700 transition-colors font-semibold leading-snug">
               {nextPost.title} →

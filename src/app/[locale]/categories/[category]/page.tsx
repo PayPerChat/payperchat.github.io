@@ -1,8 +1,10 @@
 import { getPostsByCategory, getAllCategorySlugs, getCategoryBySlug, getTagSlug } from '@/lib/posts';
 import { getCategoryDisplayName, getTagDisplayName } from '@/lib/mappings';
 import { generateCategoryMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { formatDate } from '@/lib/dateUtils';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -43,6 +45,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, category } = await params;
   const categoryDisplayName = getCategoryDisplayName(category, locale);
   const posts = getPostsByCategory(category, locale);
+  const t = await getTranslations();
   
   if (posts.length === 0) {
     notFound();
@@ -53,11 +56,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <header className="mb-12">
         <nav className="text-sm text-gray-500 mb-4">
           <Link href={`/${locale}`} className="hover:text-blue-600">
-            {locale === 'ko' ? '홈' : 'Home'}
+            {t('navigation.home')}
           </Link>
           <span className="mx-2">/</span>
           <Link href={`/${locale}/categories`} className="hover:text-blue-600">
-            {locale === 'ko' ? '카테고리' : 'Categories'}
+            {t('navigation.categories')}
           </Link>
           <span className="mx-2">/</span>
           <span>{categoryDisplayName}</span>
@@ -65,10 +68,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         
         <h1 className="text-4xl font-bold mb-4">{categoryDisplayName}</h1>
         <p className="text-gray-600">
-          {locale === 'ko' 
-            ? `${posts.length}개의 글이 있습니다.`
-            : `${posts.length} post${posts.length !== 1 ? 's' : ''} found.`
-          }
+          {t('pages.categories.postsFound', { count: posts.length })}
         </p>
       </header>
 
@@ -113,7 +113,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
                 
                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-                  <span>{new Date(post.date).toLocaleDateString(locale === 'ko' ? 'ko-KR' : 'en-US')}</span>
+                  <span>{formatDate(post.date, locale)}</span>
                   <span>•</span>
                   <span>{post.readingTime}</span>
                   {post.author && (
@@ -154,7 +154,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           href={`/${locale}/categories`}
           className="text-blue-600 hover:text-blue-800 transition-colors"
         >
-          ← {locale === 'ko' ? '모든 카테고리 보기' : 'View All Categories'}
+          ← {t('actions.viewAllCategories')}
         </Link>
       </div>
     </div>

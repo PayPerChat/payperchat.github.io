@@ -25,14 +25,13 @@ export interface MetadataConfig {
 }
 
 const BASE_URL = 'https://payperchat.github.io';
-const SITE_NAME = 'PayPerChat Blog';
 
 export function generateBaseMetadata(locale: Locale, path: string = ''): MetadataConfig {
   const url = `${BASE_URL}/${locale}${path}`;
   const alternateUrl = locale === 'ko' ? `${BASE_URL}/en${path}` : `${BASE_URL}/ko${path}`;
   
   return {
-    title: locale === 'ko' ? 'PayPerChat 블로그' : 'PayPerChat Blog', // 기본 제목
+    title: locale === 'ko' ? 'PayPerChat 블로그' : 'PayPerChat Blog',
     description: locale === 'ko' 
       ? 'AI 비용 최적화와 LLM 사용법 가이드 - 종량제 AI 서비스로 70% 절약하세요'
       : 'AI Cost Optimization and LLM Usage Guides - Save 70% with Pay-Per-Use AI Services',
@@ -47,7 +46,7 @@ export function generateBaseMetadata(locale: Locale, path: string = ''): Metadat
       type: 'website',
       images: [`${BASE_URL}/og-image.png`],
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
-      siteName: SITE_NAME
+      siteName: 'PayPerChat Blog'
     },
     alternates: {
       canonical: url,
@@ -72,7 +71,7 @@ export function generatePostMetadata(post: PostData, locale: Locale): MetadataCo
   
   return {
     ...base,
-    title: post.title, // 루트 레이아웃의 template 사용
+    title: post.title,
     description: post.excerpt,
     keywords: [...tagNames, ...categoryNames, 'AI', 'LLM', 'PayPerChat'],
     openGraph: {
@@ -92,14 +91,14 @@ export function generateCategoryMetadata(categorySlug: string, locale: Locale, p
   
   return {
     ...base,
-    title: categoryName, // 루트 레이아웃의 template 사용
+    title: categoryName,
     description: locale === 'ko'
       ? `${categoryName} 관련 ${postCount}개의 글을 확인하세요. AI 비용 최적화와 효율적인 사용 방법에 대한 전문 가이드입니다.`
       : `Explore ${postCount} articles about ${categoryName}. Expert guides on AI cost optimization and efficient usage methods.`,
     keywords: [categoryName, 'AI', 'LLM', 'cost optimization', 'PayPerChat'],
     openGraph: {
       ...base.openGraph!,
-      title: `${categoryName} | ${SITE_NAME}`,
+      title: `${categoryName} | PayPerChat Blog`,
       description: locale === 'ko'
         ? `${categoryName} 관련 ${postCount}개의 전문 가이드`
         : `${postCount} expert guides about ${categoryName}`
@@ -114,14 +113,14 @@ export function generateTagMetadata(tagSlug: string, locale: Locale, postCount: 
   
   return {
     ...base,
-    title: `#${tagName}`, // 루트 레이아웃의 template 사용
+    title: `#${tagName}`,
     description: locale === 'ko'
       ? `${tagName} 태그가 포함된 ${postCount}개의 글을 확인하세요. AI와 LLM 최적화에 대한 실용적인 팁과 가이드입니다.`
       : `Check out ${postCount} articles tagged with ${tagName}. Practical tips and guides for AI and LLM optimization.`,
     keywords: [tagName, 'AI', 'LLM', 'optimization', 'PayPerChat'],
     openGraph: {
       ...base.openGraph!,
-      title: `#${tagName} | ${SITE_NAME}`,
+      title: `#${tagName} | PayPerChat Blog`,
       description: locale === 'ko'
         ? `${tagName} 태그 - ${postCount}개의 실용적인 가이드`
         : `${tagName} tag - ${postCount} practical guides`
@@ -153,11 +152,11 @@ export function generateListPageMetadata(type: 'categories' | 'tags' | 'posts', 
   
   return {
     ...base,
-    title: titles[type], // 루트 레이아웃의 template 사용
+    title: titles[type],
     description: descriptions[type],
     openGraph: {
       ...base.openGraph!,
-      title: `${titles[type]} | ${SITE_NAME}`,
+      title: `${titles[type]} | PayPerChat Blog`,
       description: descriptions[type]
     }
   };

@@ -1,8 +1,10 @@
 import { getPostsByTag, getAllTagSlugs, getTagBySlug, getTagSlug, getCategorySlug } from '@/lib/posts';
 import { getTagDisplayName, getCategoryDisplayName } from '@/lib/mappings';
 import { generateTagMetadata, toNextjsMetadata } from '@/lib/metadata';
+import { formatDate } from '@/lib/dateUtils';
 import { Locale } from '@/i18n/request';
 import { routing } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -43,6 +45,7 @@ export default async function TagPage({ params }: TagPageProps) {
   const { locale, tag } = await params;
   const tagDisplayName = getTagDisplayName(tag, locale);
   const posts = getPostsByTag(tag, locale);
+  const t = await getTranslations();
   
   if (posts.length === 0) {
     notFound();
@@ -53,11 +56,11 @@ export default async function TagPage({ params }: TagPageProps) {
       <header className="mb-12">
         <nav className="text-sm text-gray-500 mb-4">
           <Link href={`/${locale}`} className="hover:text-blue-600">
-            {locale === 'ko' ? '홈' : 'Home'}
+            {t('navigation.home')}
           </Link>
           <span className="mx-2">/</span>
           <Link href={`/${locale}/tags`} className="hover:text-blue-600">
-            {locale === 'ko' ? '태그' : 'Tags'}
+            {t('navigation.tags')}
           </Link>
           <span className="mx-2">/</span>
           <span>#{tagDisplayName}</span>
@@ -65,10 +68,7 @@ export default async function TagPage({ params }: TagPageProps) {
         
         <h1 className="text-4xl font-bold mb-4">#{tagDisplayName}</h1>
         <p className="text-gray-600">
-          {locale === 'ko' 
-            ? `이 태그가 포함된 ${posts.length}개의 글이 있습니다.`
-            : `${posts.length} post${posts.length !== 1 ? 's' : ''} tagged with this.`
-          }
+          {t('pages.tag.postsAvailable', { count: posts.length })}
         </p>
       </header>
 
@@ -110,7 +110,7 @@ export default async function TagPage({ params }: TagPageProps) {
                 <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
                 
                 <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-                  <span>{new Date(post.date).toLocaleDateString(locale === 'ko' ? 'ko-KR' : 'en-US')}</span>
+                  <span>{formatDate(post.date, locale)}</span>
                   <span>•</span>
                   <span>{post.readingTime}</span>
                   {post.author && (
@@ -148,7 +148,7 @@ export default async function TagPage({ params }: TagPageProps) {
           href={`/${locale}/tags`}
           className="text-blue-600 hover:text-blue-800 transition-colors"
         >
-          ← {locale === 'ko' ? '모든 태그 보기' : 'View All Tags'}
+          ← {t('actions.viewAllTags')}
         </Link>
       </div>
     </div>

@@ -1,16 +1,151 @@
 {
+  "common": {
+    "locale": "en_US",
+    "siteName": "PayPerChat Blog",
+    "baseTitle": "PayPerChat Blog",
+    "baseDescription": "AI Cost Optimization and LLM Usage Guides - Save 70% with Pay-Per-Use AI Services",
+    "keywords": ["AI cost savings", "ChatGPT alternative", "pay-per-use AI", "LLM optimization", "PayPerChat"]
+  },
   "layout": {
     "title": "PayPerChat Blog"
+  },
+  "footer": {
+    "title": "PayPerChat Blog",
+    "description": "AI Cost Optimization and LLM Usage Guides",
+    "links": {
+      "payPerChat": "PayPerChat",
+      "pricing": "Pricing",
+      "faq": "FAQ"
+    },
+    "copyright": "© {year} PayPerChat. All rights reserved."
   },
   "navigation": {
     "home": "Home",
     "categories": "Categories", 
     "tags": "Tags"
   },
+  "actions": {
+    "viewMore": "more",
+    "exploreMore": "Explore more",
+    "getStarted": "Get started for free",
+    "watchGuide": "Watch guide",
+    "viewAllPosts": "View All Posts",
+    "viewAllCategories": "View All Categories",
+    "viewAllTags": "View All Tags"
+  },
+  "post": {
+    "by": "By",
+    "more": "more",
+    "noPosts": "No posts found.",
+    "notFound": {
+      "title": "Post Not Found",
+      "description": "The requested post could not be found."
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "badge": "Save 70% monthly costs",
+        "title1": "Optimize your",
+        "title2": "AI costs",
+        "description": "Smart AI usage with PayPerChat's pay-per-use model. No more expensive monthly subscriptions like ChatGPT Plus",
+        "trustBadge": "Thousands already saving costs",
+        "satisfaction": "satisfaction",
+        "costSavings": "cost savings"
+      },
+      "categories": {
+        "title": "Explore by topic",
+        "description": "Discover articles organized by topics that matter to you"
+      },
+      "insights": {
+        "title": "Latest insights",
+        "description": "Stay updated with the latest AI cost optimization strategies and tips",
+        "viewAllButton": "View all articles"
+      },
+      "promotion": {
+        "title": "Smart AI cost management",
+        "description": "Break free from expensive fixed subscriptions with PayPerChat",
+        "features": {
+          "savings": {
+            "title": "Up to 70% savings",
+            "description": "Reduce unnecessary costs with usage-based fair pricing"
+          },
+          "models": {
+            "title": "All AI models supported",
+            "description": "Access the latest AI models like GPT, Claude, Gemini in one place"
+          },
+          "instant": {
+            "title": "Get started instantly",
+            "description": "Start using AI in seconds without complex setup"
+          }
+        },
+        "ctaButton": "Try PayPerChat for free"
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "description": "Browse articles by topic of interest", 
+      "recentPosts": "Recent Posts",
+      "noCategories": "No categories found.",
+      "postsAvailable": "{count} posts available",
+      "postsFound": "{count} posts found.",
+      "moreText": "more"
+    },
+    "tags": {
+      "title": "Tags",
+      "description": "Find related articles by tags",
+      "noTags": "No tags found."
+    },
+    "tag": {
+      "postsAvailable": "{count} posts tagged with this."
+    },
+    "posts": {
+      "title": "All Posts",
+      "readingTime": "min read"
+    },
+    "post": {
+      "tags": "Tags",
+      "promotion": {
+        "title": "Use AI More Affordably",
+        "description": "If this article was helpful, try using AI without monthly subscriptions with PayPerChat!",
+        "ctaButton": "Try PayPerChat Free"
+      },
+      "navigation": {
+        "previousPost": "Previous Post",
+        "nextPost": "Next Post",
+        "backToHome": "Back to Home"
+      }
+    }
+  },
+  "listPages": {
+    "categories": "All Categories",
+    "tags": "All Tags",
+    "posts": "All Posts"
+  },
+  "listPageDescriptions": {
+    "categories": "Find AI optimization guides by topic of interest",
+    "tags": "Find related AI guides by tags",
+    "posts": "Explore all guides on AI cost optimization and LLM usage"
+  },
+  "categoryDescriptions": {
+    "cost-optimization": "Efficient AI cost management strategies",
+    "artificial-intelligence": "AI fundamentals and practical applications",
+    "tutorials": "Step-by-step AI guides and tutorials",
+    "productivity": "Boost your productivity with AI tools",
+    "news": "Latest AI news and updates",
+    "reviews": "AI service comparisons and selection guide",
+    "general": "Useful AI information and guides"
+  },
+  "test": {
+    "title": "English Test Page",
+    "description": "If you can see this page, Next.js routing is working correctly.",
+    "goToKorean": "Go to Korean page",
+    "goToHomepage": "Go to actual English homepage"
+  },
   "metadata": {
     "home": {
-      "title": "PayPerChat Blog - AI Cost Optimization Guide",
-      "description": "Learn how to use AI more cost-effectively with pay-per-use instead of ChatGPT Plus subscriptions"
+      "title": "PayPerChat Blog - Save 70% on AI Costs",
+      "description": "Save 70% monthly by switching from ChatGPT Plus to pay-per-use AI services. Learn LLM optimization and cost-efficient AI usage."
     },
     "posts": {
       "title": "All Posts - PayPerChat Blog",

@@ -37,6 +37,30 @@ export const tagMappings: TagMapping = {
   'chatgpt-usage': {
     en: 'ChatGPT Usage',
     ko: 'ChatGPT 사용량'
+  },
+  'gpt-5': {
+    en: 'ChatGPT 5',
+    ko: 'ChatGPT 5'
+  },
+  'claude-4': {
+    en: 'Claude 4',
+    ko: 'Claude 4'
+  },
+  'gemini-2.5': {
+    en: 'Gemini 2.5',
+    ko: 'Gemini 2.5'
+  },
+  'ai-model-comparison': {
+    en: 'AI model comparision',
+    ko: 'AI 모델 비교'
+  },
+  'best-ai-model-2025': {
+    en: 'best AI model 2025',
+    ko: 'best AI model 2025'
+  },
+  'chatbot-accuracy': {
+    en: 'chatbot accuracy',
+    ko: '챗봇 정확도'
   }
 };
 

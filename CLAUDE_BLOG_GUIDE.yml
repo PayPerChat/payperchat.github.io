@@ -25,7 +25,7 @@ project_structure:
   file_naming:
     posts: "descriptive-slug.md (영어 소문자, 하이픈 구분)"
     images: "descriptive-name.png or .jpg"
-    example: "chatgpt-plus-alternative-pay-per-use.md"
+    example: "what-is-a-token-in-ai.md"
   
   development:
     dev_server: "npm run dev (localhost:3000 또는 3001)"
@@ -41,32 +41,18 @@ frontmatter_template: |
   excerpt: "검색 결과에 표시될 매력적인 요약 (120-150자)"
   date: "2025-01-22"  # YYYY-MM-DD 형식
   categories:
-    - "해당 카테고리명"  # 아래 categories 섹션 참조
+    - "해당 카테고리명"  # 아래 categories 섹션 참조, 최대한 기존 카테고리 활용, 기존 카테고리에 없을 시 추가
   tags:
-    - "payperchat"  # 필수 태그
-    - "핵심키워드"
-    - "관련키워드"
+    - "ai-tokens"  # 최대한 기존 태그 활용, 기존 태그에 없을 시 추가
+    - "tokenization"
   author: "PayPerChat"
   image: "/assets/images/posts/descriptive-name.png"
   ---
 
-### 카테고리 구조 (정확히 일치해야 함)
+### 카테고리 구조 (src/lib/mappings.ts 참고. 해당 파일에 없으면 추가 필요함.)
 categories:
-  korean:
-    - "AI 기초"           # AI fundamentals
-    - "모델 비교"         # Model comparison  
-    - "비용 최적화"       # Cost optimization
-    - "사용법 가이드"     # Usage guide
-    - "산업 동향"         # Industry trends
-    - "PayPerChat 활용"   # PayPerChat tips
-  
-  english:
-    - "AI Fundamentals"
-    - "Model Comparison"
-    - "Cost Optimization"
-    - "Usage Guide"
-    - "Industry Trends"
-    - "PayPerChat Tips"
+  - "artificial-intelligence"
+  - "example-category"
 
 ### MDX 콘텐츠 작성 규칙
 mdx_content_rules:
@@ -90,7 +76,6 @@ core_principles:
   content_value_first: "독자에게 실제 도움이 되는 정보 90% + PayPerChat 자연스러운 홍보 10%"
   accuracy_mandatory: "모든 수치와 데이터는 최신 공식 소스에서 확인"
   natural_writing: "AI 감지 우회를 위한 자연스럽고 인간적인 글쓰기"
-  subtle_promotion: "PayPerChat 언급은 포스트 30-60% 지점에 3-5줄 정도로 자연스럽게"
   verified_data: "PayPerChat 가격 정보는 반드시 https://payperchat.org/pricing 에서 확인"
 
 ### 콘텐츠 품질 기준
@@ -104,56 +89,24 @@ quality_standards:
       optimal: 2500-3500
   
   mandatory_elements:
-    - "독자에게 즉시 실행 가능한 5개 이상의 구체적 예시"
     - "최신 공식 소스에서 확인된 정확한 수치와 데이터"
-    - "단계별 실행 가이드 포함"
     - "PayPerChat 자연스러운 언급 (광고같지 않게)"
-    - "https://payperchat.org 링크 자연스럽게 포함"
-    - "상황에 맞는 적절한 이미지 (플레이스홀더 가능)"
-
-### 포스트 구조 템플릿
-post_structure:
-  1_hook: "독자의 관심을 끄는 문제 상황 제시"
-  2_problem: "구체적인 문제점과 현재 상황 분석"
-  3_solution: "해결책 제시 및 다양한 접근법 소개"
-  4_examples: "실제 사용 예시와 구체적 수치 데이터"
-  5_guide: "단계별 실행 가이드"
-  6_payperchat: "PayPerChat이 어떻게 도움이 되는지 자연스럽게 언급"
-  7_conclusion: "핵심 요약 및 다음 단계 제시"
-
-## 🔑 SEO 및 키워드 최적화
-
-### 타겟 키워드
-target_keywords:
-  primary:
-    korean: ["PayPerChat", "AI 비용 절약", "ChatGPT 대안", "종량제 AI", "LLM 토큰"]
-    english: ["PayPerChat", "AI cost savings", "ChatGPT alternative", "pay-per-use AI"]
-  
-  secondary:
-    korean: ["Claude vs ChatGPT", "Gemini 비교", "AI 모델 비교", "프롬프트 엔지니어링"]
-    english: ["Claude vs ChatGPT", "Gemini comparison", "AI model comparison", "prompt engineering"]
-  
-  long_tail:
-    korean: ["ChatGPT 구독료 없이 사용하는 방법", "AI 토큰 최적화 방법", "여러 AI 모델 한 번에 사용하기"]
-    english: ["how to use ChatGPT without subscription", "AI token optimization methods", "multiple AI models platform"]
+    - "PayPerChat 언급에 서비스 링크(https://payperchat.org) 연결"
 
 ### SEO 체크리스트
 seo_checklist:
   title:
     - "50-60자 이내"
     - "핵심 키워드 앞쪽에 배치"
-    - "숫자나 구체적 혜택 포함"
     - "클릭을 유도하는 매력적 표현"
   
   excerpt:
     - "120-150자 이내"
     - "핵심 키워드 자연스럽게 포함"
     - "독자 행동 유도 문구 포함"
-    - "PayPerChat 언급 (가능한 경우)"
   
   content:
     - "H2, H3 태그에 키워드 포함"
-    - "키워드 밀도 1-2% 자연스럽게 유지"
     - "관련 포스트 내부 링크 3-5개"
     - "신뢰성 있는 외부 링크 2-3개"
 
@@ -186,30 +139,11 @@ multilingual_strategy:
   korean_priority: "한국어 포스트를 먼저 작성하고 영어로 번역/각색"
   cultural_adaptation: "단순 번역이 아닌 각 언어권 문화에 맞는 내용 조정"
   keyword_localization: "각 언어별 키워드 연구 및 최적화"
-  
-  korean_characteristics:
-    - "구체적인 수치와 절약 금액 강조"
-    - "단계별 설명과 실습 가이드 선호"
-    - "커뮤니티 후기나 경험담 포함"
-    - "비교표나 인포그래픽 활용"
-  
-  english_characteristics:
-    - "효율성과 생산성 강조"
-    - "비즈니스 케이스와 ROI 중점"
-    - "기술적 세부사항 선호"
-    - "글로벌 트렌드와 연결"
-
-### 포스트 연결 (ref 필드 활용)
-cross_language_linking:
-  ref_field: "동일한 주제의 한/영 포스트는 동일한 ref 값 사용"
-  example: "ref: 'chatgpt-alternative-comparison-2025'"
-  automatic_linking: "Next.js 템플릿에서 자동으로 언어 전환 링크 생성"
 
 ## 🛠️ 실제 작성 프로세스
 
 ### 1단계: 리서치 및 계획
 research_phase:
-  keyword_research: "Google Keyword Planner, Naver 키워드 도구로 검색량 확인"
   competitor_analysis: "상위 랭킹 글 분석, 차별화 포인트 찾기"
   fact_checking: "모든 수치와 데이터 공식 소스에서 확인"
   outline_creation: "독자 여정 고려한 논리적 구조 설계"
@@ -226,37 +160,7 @@ optimization_phase:
   seo_optimization: "제목, 메타, 헤딩에 키워드 자연스럽게 배치"
   readability_check: "문장 길이, 단락 구성, 가독성 확인"
   fact_verification: "모든 수치와 링크 다시 한 번 확인"
-  mobile_friendly: "모바일 환경에서의 가독성 확인"
 
-### 4단계: 배포 및 모니터링
-publishing_phase:
-  file_creation: "적절한 경로에 .md 파일 생성"
-  git_commit: "의미있는 커밋 메시지로 GitHub에 푸시"
-  deployment_check: "GitHub Actions 배포 성공 확인"
-  indexing_request: "Google Search Console에서 색인 요청"
-
-## 📈 성과 측정 및 개선
-
-### 주요 KPI
-success_metrics:
-  seo_metrics:
-    - "목표 키워드 검색 순위 (상위 10위 내)"
-    - "월간 오가닉 트래픽 증가율"
-    - "평균 세션 시간 (3분 이상)"
-    - "이탈률 (50% 이하)"
-  
-  conversion_metrics:
-    - "PayPerChat 사이트 클릭률"
-    - "포스트별 참여도 (댓글, 공유)"
-    - "이메일 구독 전환율"
-    - "브랜드 키워드 검색량 증가"
-
-### 지속적 개선
-continuous_improvement:
-  monthly_review: "월별 성과 분석 및 개선점 도출"
-  keyword_expansion: "새로운 키워드 기회 발굴"
-  content_update: "기존 포스트 업데이트 및 최적화"
-  competitor_monitoring: "경쟁사 콘텐츠 전략 모니터링"
 
 ## ⚠️ 주의사항 및 제한사항
 
@@ -281,37 +185,3 @@ quality_assurance:
     - "맞춤법 및 문법 검사"
     - "링크 작동 여부 확인"
     - "이미지 최적화 상태 확인"
-  
-  post_publishing:
-    - "배포 성공 여부 확인"
-    - "실제 사이트에서 표시 확인"
-    - "모바일 환경 테스트"
-    - "검색엔진 색인 요청"
-
-## 🚀 시작하기
-
-### ClaudeCode 사용자를 위한 빠른 가이드
-quick_start_for_claudecode:
-  1_research: "키워드 리서치 및 최신 정보 확인"
-  2_structure: "독자 여정 고려한 포스트 구조 설계"
-  3_write: "가치 있는 정보 + 자연스러운 PayPerChat 언급"
-  4_optimize: "SEO 최적화 및 가독성 확인"
-  5_deploy: "적절한 경로에 .md 파일 생성 후 커밋"
-
-### 추천 포스트 주제
-recommended_topics:
-  high_priority:
-    - "ChatGPT vs Claude vs Gemini 2025 완벽 비교"
-    - "AI 구독료 vs 종량제 비용 분석"
-    - "프롬프트 엔지니어링 실전 가이드"
-    - "AI 토큰 최적화로 비용 50% 절약하기"
-  
-  medium_priority:
-    - "업무별 최적 AI 모델 선택 가이드"
-    - "AI 도구로 생산성 10배 높이는 방법"
-    - "2025년 AI 업계 주요 트렌드 분석"
-    - "PayPerChat 활용 성공 사례 모음"
-
----
-
-**이 가이드를 따라 작성하면 SEO 최적화되고 사용자에게 가치 있는 PayPerChat 블로그 포스트를 완성할 수 있습니다.**

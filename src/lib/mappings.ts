@@ -61,6 +61,26 @@ export const tagMappings: TagMapping = {
   'chatbot-accuracy': {
     en: 'chatbot accuracy',
     ko: '챗봇 정확도'
+  },
+  'llm': {
+    en: 'LLM',
+    ko: '거대언어모델'
+  },
+  'large-language-models': {
+    en: 'Large Language Models',
+    ko: '거대언어모델'
+  },
+  'machine-learning': {
+    en: 'Machine Learning',
+    ko: '머신러닝'
+  },
+  'neural-networks': {
+    en: 'Neural Networks',
+    ko: '신경망'
+  },
+  'natural-language-processing': {
+    en: 'Natural Language Processing',
+    ko: '자연어처리'
   }
 };
 

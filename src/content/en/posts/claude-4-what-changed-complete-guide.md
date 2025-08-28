@@ -459,7 +459,7 @@ For coding and complex reasoning tasks, Claude 4 generally outperforms GPT-4. Ho
 
 Costs vary significantly based on usage patterns:
 
-**Heavy Users** (>1M tokens/month):
+**Heavy Users** (&gt;1M tokens/month):
 - Direct subscription may be more economical
 - Consider enterprise plans for volume discounts
 
@@ -467,7 +467,7 @@ Costs vary significantly based on usage patterns:
 - PayPerChat often provides substantial savings
 - Compare actual usage costs vs subscription fees
 
-**Light Users** (<100K tokens/month):
+**Light Users** (&lt;100K tokens/month):
 - Pay-per-use models like PayPerChat typically offer 50-80% savings
 - No risk of paying for unused capacity
 

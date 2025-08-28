@@ -117,6 +117,66 @@ export const tagMappings: TagMapping = {
   'prompt-best-practices': {
     en: 'Prompt Best Practices',
     ko: '프롬프트 모범 사례'
+  },
+  'gpt-5-features': {
+    en: 'GPT-5 Features',
+    ko: 'GPT-5 기능'
+  },
+  'openai-updates': {
+    en: 'OpenAI Updates',
+    ko: 'OpenAI 업데이트'
+  },
+  'ai-reasoning': {
+    en: 'AI Reasoning',
+    ko: 'AI 추론'
+  },
+  'multimodal-ai': {
+    en: 'Multimodal AI',
+    ko: '멀티모달 AI'
+  },
+  'claude-features': {
+    en: 'Claude Features',
+    ko: 'Claude 기능'
+  },
+  'anthropic-updates': {
+    en: 'Anthropic Updates',
+    ko: 'Anthropic 업데이트'
+  },
+  'coding-ai': {
+    en: 'Coding AI',
+    ko: '코딩 AI'
+  },
+  'ai-agents': {
+    en: 'AI Agents',
+    ko: 'AI 에이전트'
+  },
+  'gemini-2.5-flash': {
+    en: 'Gemini 2.5 Flash',
+    ko: 'Gemini 2.5 Flash'
+  },
+  'gemini-2.5-pro': {
+    en: 'Gemini 2.5 Pro',
+    ko: 'Gemini 2.5 Pro'
+  },
+  'deep-think': {
+    en: 'Deep Think',
+    ko: '딥싱크'
+  },
+  'thinking-models': {
+    en: 'Thinking Models',
+    ko: '사고 모델'
+  },
+  'context-window': {
+    en: 'Context Window',
+    ko: '컨텍스트 윈도우'
+  },
+  'google-ai': {
+    en: 'Google AI',
+    ko: 'Google AI'
+  },
+  'api-pricing': {
+    en: 'API Pricing',
+    ko: 'API 가격'
   }
 };
 

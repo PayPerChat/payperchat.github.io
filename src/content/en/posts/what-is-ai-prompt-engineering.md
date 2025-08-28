@@ -1,7 +1,7 @@
 ---
 title: "What is AI Prompt Engineering? Complete Guide for 2025"
 excerpt: "Master AI prompt engineering with our comprehensive guide. Learn what prompts are, advanced techniques like few-shot prompting, chain-of-thought, and how to optimize AI interactions for better results and cost efficiency."
-date: "2025-01-28"
+date: "2025-08-27"
 categories:
   - "artificial-intelligence"
 tags:

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   verification: {
-    google: 'your-google-verification-code', // 실제 코드로 교체 필요
+    google: 'yXZSo3VafJ5tdUa6-lKbrG0mupqnFqgVjYpiMaIl58A',
   },
 };
 

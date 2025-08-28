@@ -81,6 +81,42 @@ export const tagMappings: TagMapping = {
   'natural-language-processing': {
     en: 'Natural Language Processing',
     ko: '자연어처리'
+  },
+  'prompt-engineering': {
+    en: 'Prompt Engineering',
+    ko: '프롬프트 엔지니어링'
+  },
+  'ai-prompts': {
+    en: 'AI Prompts',
+    ko: 'AI 프롬프트'
+  },
+  'prompt-techniques': {
+    en: 'Prompt Techniques',
+    ko: '프롬프트 기법'
+  },
+  'few-shot-prompting': {
+    en: 'Few-shot Prompting',
+    ko: '퓨샷 프롬프팅'
+  },
+  'zero-shot-prompting': {
+    en: 'Zero-shot Prompting',
+    ko: '제로샷 프롬프팅'
+  },
+  'chain-of-thought': {
+    en: 'Chain of Thought',
+    ko: '사고 연쇄'
+  },
+  'prompt-optimization': {
+    en: 'Prompt Optimization',
+    ko: '프롬프트 최적화'
+  },
+  'ai-communication': {
+    en: 'AI Communication',
+    ko: 'AI 커뮤니케이션'
+  },
+  'prompt-best-practices': {
+    en: 'Prompt Best Practices',
+    ko: '프롬프트 모범 사례'
   }
 };
 

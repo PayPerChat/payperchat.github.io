@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts, getAllCategories, getAllTags, getCategorySlug, getTagSlug } from '@/lib/posts'
+import { getAllPosts, getAllCategories, getCategorySlug } from '@/lib/posts'
 import { routing } from '@/i18n/routing'
 
 export const dynamic = 'force-static'
@@ -57,18 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Add tag pages
-  routing.locales.forEach(locale => {
-    const tags = getAllTags(locale)
-    tags.forEach(tag => {
-      routes.push({
-        url: `${baseUrl}/${locale}/tags/${getTagSlug(tag)}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.5,
-      })
-    })
-  })
+  // Tag pages are excluded from sitemap
 
   return routes
 }

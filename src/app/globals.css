@@ -314,6 +314,66 @@ body {
   outline-offset: 2px;
 }
 
+/* Table Styles for MDX Content */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.prose table th {
+  background: var(--gray-50);
+  color: var(--gray-900);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid var(--gray-200);
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+}
+
+.prose table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-700);
+}
+
+.prose table tbody tr {
+  background: white;
+  transition: background-color 0.2s ease;
+}
+
+.prose table tbody tr:nth-child(even) {
+  background: var(--gray-50);
+}
+
+.prose table tbody tr:hover {
+  background: var(--gray-100);
+}
+
+.prose table th:first-child,
+.prose table td:first-child {
+  font-weight: 500;
+  color: var(--gray-900);
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .prose table {
+    font-size: 0.875rem;
+  }
+  
+  .prose table th,
+  .prose table td {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
 /* Responsive Typography */
 @media (max-width: 640px) {
   .prose h1 {

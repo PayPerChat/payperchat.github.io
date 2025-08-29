@@ -177,6 +177,22 @@ export const tagMappings: TagMapping = {
   'api-pricing': {
     en: 'API Pricing',
     ko: 'API 가격'
+  },
+  'claude-max-plan': {
+    en: 'Claude Max Plan',
+    ko: 'Claude Max Plan'
+  },
+  'claude-pricing': {
+    en: 'Claude Pricing',
+    ko: 'Claude 가격'
+  },
+  'subscription-pricing': {
+    en: 'Subscription Pricing',
+    ko: '구독 가격'
+  },
+  'ai-cost-comparison': {
+    en: 'AI Cost Comparison',
+    ko: 'AI 비용 비교'
   }
 };
 

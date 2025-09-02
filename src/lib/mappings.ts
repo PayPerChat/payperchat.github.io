@@ -193,6 +193,22 @@ export const tagMappings: TagMapping = {
   'ai-cost-comparison': {
     en: 'AI Cost Comparison',
     ko: 'AI 비용 비교'
+  },
+  'ai-image-generation': {
+    en: 'AI Image Generation',
+    ko: 'AI 이미지 생성'
+  },
+  'nano-banana': {
+    en: 'Nano Banana',
+    ko: '나노 바나나'
+  },
+  'image-editing-ai': {
+    en: 'Image Editing AI',
+    ko: 'AI 이미지 편집'
+  },
+  'synthid-watermark': {
+    en: 'SynthID Watermark',
+    ko: 'SynthID 워터마크'
   }
 };
 

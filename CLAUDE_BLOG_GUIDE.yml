@@ -12,7 +12,7 @@ blog_overview:
     - "ChatGPT Plus 구독료 부담을 느끼는 사용자"
     - "다양한 AI 모델을 비교하고 싶은 사용자"
     - "LLM 기술에 관심있는 개발자 및 일반인"
-  mission: "PayPerChat 서비스 사용자 유입을 위한 SEO 최적화된 가치 있는 콘텐츠 제공"
+  mission: "PayPerChat 서비스 사용자 유입을 위한 SEO 최적화된 포스팅 작성. 사용자에게 유익한 가치 있는 콘텐츠 제공"
 
 ## 🏗️ 프로젝트 구조 및 파일 경로
 project_structure:
@@ -39,7 +39,7 @@ frontmatter_template: |
   ---
   title: "[카테고리] 구체적이고 매력적인 SEO 제목 (50-60자)"
   excerpt: "검색 결과에 표시될 매력적인 요약 (120-150자)"
-  date: "2025-01-22"  # YYYY-MM-DD 형식
+  date: "yyyy-MM-dd"  # YYYY-MM-DD 형식 (오늘 날짜)
   categories:
     - "해당 카테고리명"  # 아래 categories 섹션 참조, 최대한 기존 카테고리 활용, 기존 카테고리에 없을 시 추가
   tags:
@@ -82,11 +82,11 @@ core_principles:
 quality_standards:
   word_count:
     korean:
-      minimum: 2500
-      optimal: 3000-4000
+      minimum: 1200
+      optimal: 1500-2000
     english:
-      minimum: 2000
-      optimal: 2500-3500
+      minimum: 1000
+      optimal: 1200-1700
   
   mandatory_elements:
     - "최신 공식 소스에서 확인된 정확한 수치와 데이터"
@@ -147,6 +147,9 @@ research_phase:
   competitor_analysis: "상위 랭킹 글 분석, 차별화 포인트 찾기"
   fact_checking: "모든 수치와 데이터 공식 소스에서 확인"
   outline_creation: "독자 여정 고려한 논리적 구조 설계"
+  search_engine: "brave-search-mcp (MCP 툴 고정)"
+  search_engine_limit: "초당 최대 1회 → 각 호출 사이 1,000ms 간격 유지"
+  search_engine_mcp_call: "최소 10회 이상 (주제·관점 다양화 위해 12~20회 권장)"
 
 ### 2단계: 콘텐츠 작성
 writing_phase:

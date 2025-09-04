@@ -209,6 +209,18 @@ export const tagMappings: TagMapping = {
   'synthid-watermark': {
     en: 'SynthID Watermark',
     ko: 'SynthID 워터마크'
+  },
+  'chatgpt-pro-plan': {
+    en: 'ChatGPT Pro Plan',
+    ko: 'ChatGPT Pro 플랜'
+  },
+  'openai-pricing': {
+    en: 'OpenAI Pricing',
+    ko: 'OpenAI 가격'
+  },
+  'ai-subscription-plans': {
+    en: 'AI Subscription Plans',
+    ko: 'AI 구독 플랜'
   }
 };
 

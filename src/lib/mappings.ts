@@ -249,6 +249,10 @@ export const tagMappings: TagMapping = {
   'pay-per-use-ai': {
     en: 'Pay-per-use AI',
     ko: '종량제 AI'
+  },
+  'thinking-budgets': {
+    en: 'Thinking Budgets',
+    ko: '사고 예산'
   }
 };
 

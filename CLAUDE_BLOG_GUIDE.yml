@@ -159,6 +159,7 @@ writing_phase:
   value_delivery: "즉시 실행 가능한 구체적 정보 제공"
   natural_flow: "AI 감지를 피하는 자연스러운 문장과 구조"
   payperchat_integration: "강제스럽지 않은 자연스러운 서비스 언급"
+  writing_guide: "독자가 이해하기 쉽게 되도록이면 번호나 기호 기반의 항목 나열이 아닌, 자연스러운 문장과 단락(서술형)으로 설명"
 
 ### 3단계: 최적화 및 검증
 optimization_phase:

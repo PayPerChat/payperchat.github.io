@@ -77,6 +77,7 @@ core_principles:
   accuracy_mandatory: "모든 수치와 데이터는 최신 공식 소스에서 확인"
   natural_writing: "AI 감지 우회를 위한 자연스럽고 인간적인 글쓰기"
   verified_data: "PayPerChat 가격 정보는 반드시 https://payperchat.org/pricing 에서 확인"
+  writing_guide: "독자가 이해하기 쉽게 되도록이면 번호나 기호 기반의 항목 나열이 아닌, 자연스러운 문장과 단락(서술형)으로 설명"
 
 ### 콘텐츠 품질 기준
 quality_standards:

@@ -221,6 +221,34 @@ export const tagMappings: TagMapping = {
   'ai-subscription-plans': {
     en: 'AI Subscription Plans',
     ko: 'AI 구독 플랜'
+  },
+  'practical-ai-guide': {
+    en: 'Practical AI Guide',
+    ko: '실용적인 AI 가이드'
+  },
+  'ai-for-business': {
+    en: 'AI for Business',
+    ko: '비즈니스용 AI'
+  },
+  'ai-productivity': {
+    en: 'AI Productivity',
+    ko: 'AI 생산성'
+  },
+  'cost-effective-ai': {
+    en: 'Cost-effective AI',
+    ko: '비용 효율적인 AI'
+  },
+  'workflow-automation': {
+    en: 'Workflow Automation',
+    ko: '워크플로우 자동화'
+  },
+  'ai-tool-selection': {
+    en: 'AI Tool Selection',
+    ko: 'AI 도구 선택'
+  },
+  'pay-per-use-ai': {
+    en: 'Pay-per-use AI',
+    ko: '종량제 AI'
   }
 };
 

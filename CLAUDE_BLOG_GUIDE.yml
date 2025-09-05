@@ -151,6 +151,7 @@ research_phase:
   search_engine: "brave-search-mcp (MCP 툴 고정)"
   search_engine_limit: "초당 최대 1회 → 각 호출 사이 1,000ms 간격 유지"
   search_engine_mcp_call: "최소 10회 이상 (주제·관점 다양화 위해 12~20회 권장)"
+  search_engine_usage: "rate limit에 걸리면 재시도 요청"
 
 ### 2단계: 콘텐츠 작성
 writing_phase:

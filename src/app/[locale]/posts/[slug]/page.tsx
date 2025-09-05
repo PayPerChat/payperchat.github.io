@@ -41,8 +41,8 @@ export async function generateMetadata({ params }: PostPageProps) {
   
   if (!post) {
     return {
-      title: locale === 'ko' ? '게시글을 찾을 수 없습니다' : 'Post Not Found',
-      description: locale === 'ko' ? '요청하신 게시글을 찾을 수 없습니다.' : 'The requested post could not be found.',
+      title: 'Post Not Found',
+      description: 'The requested post could not be found.',
     };
   }
 

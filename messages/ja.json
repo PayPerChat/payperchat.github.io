@@ -1,0 +1,163 @@
+{
+  "common": {
+    "locale": "ja_JP",
+    "siteName": "PayPerChat ブログ",
+    "baseTitle": "PayPerChat ブログ",
+    "baseDescription": "AIコスト最適化とLLM活用ガイド — 従量課金型AIサービスで最大70%節約",
+    "keywords": ["AI コスト削減", "ChatGPT 代替", "従量課金 AI", "LLM 最適化", "PayPerChat"]
+  },
+  "layout": {
+    "title": "PayPerChat ブログ"
+  },
+  "footer": {
+    "title": "PayPerChat ブログ",
+    "description": "AIコスト最適化とLLM活用ガイド",
+    "links": {
+      "payPerChat": "PayPerChat",
+      "pricing": "料金プラン",
+      "faq": "よくある質問"
+    },
+    "copyright": "© {year} PayPerChat. 無断転載を禁じます。"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "categories": "カテゴリー",
+    "tags": "タグ"
+  },
+  "actions": {
+    "viewMore": "もっと見る",
+    "exploreMore": "詳しく見る",
+    "getStarted": "無料で始める",
+    "watchGuide": "ガイドを見る",
+    "viewAllPosts": "すべての投稿を見る",
+    "viewAllCategories": "すべてのカテゴリーを見る",
+    "viewAllTags": "すべてのタグを見る"
+  },
+  "post": {
+    "by": "執筆者：",
+    "more": "もっと見る",
+    "noPosts": "投稿がありません。",
+    "notFound": {
+      "title": "投稿が見つかりません",
+      "description": "ご指定の投稿は見つかりませんでした。"
+    }
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "badge": "最大70%コスト削減",
+        "title1": "AIコストを",
+        "title2": "最適化しましょう",
+        "description": "月額サブスクではなく使った分だけ支払う PayPerChat で、ChatGPT Plus より賢くAIを活用しましょう",
+        "trustBadge": "すでに数千人がコストを削減しています",
+        "satisfaction": "満足度",
+        "costSavings": "コスト削減"
+      },
+      "categories": {
+        "title": "トピックから探す",
+        "description": "関心のあるトピックを選んで関連投稿を見つけましょう"
+      },
+      "insights": {
+        "title": "最新インサイト",
+        "description": "AIコスト最適化と活用法に関する最新情報をチェックしましょう",
+        "viewAllButton": "すべての投稿を見る"
+      },
+      "promotion": {
+        "title": "スマートなAIコスト管理",
+        "description": "PayPerChat で固定の月額料金から解放されましょう",
+        "features": {
+          "savings": {
+            "title": "最大70%削減",
+            "description": "利用量に応じた合理的な料金で無駄なコストを抑制"
+          },
+          "models": {
+            "title": "主要AIモデルに対応",
+            "description": "GPT・Claude・Gemini など最新モデルをワンストップで利用"
+          },
+          "instant": {
+            "title": "すぐに開始",
+            "description": "面倒な設定なしで数秒でAIの利用を開始"
+          }
+        },
+        "ctaButton": "PayPerChat を無料で試す"
+      }
+    },
+    "categories": {
+      "title": "カテゴリー",
+      "description": "関心のあるトピック別に記事を探しましょう",
+      "recentPosts": "最近の投稿",
+      "noCategories": "カテゴリーがありません。",
+      "postsAvailable": "{count}件の投稿があります",
+      "postsFound": "{count}件の投稿が見つかりました。",
+      "moreText": "もっと見る"
+    },
+    "tags": {
+      "title": "タグ",
+      "description": "タグ別に関連投稿を見つけましょう",
+      "noTags": "タグがありません。"
+    },
+    "tag": {
+      "postsAvailable": "このタグを含む投稿が {count} 件あります。"
+    },
+    "posts": {
+      "title": "すべての投稿",
+      "readingTime": "分で読了"
+    },
+    "post": {
+      "tags": "タグ",
+      "promotion": {
+        "title": "もっと安くAIを使う",
+        "description": "この記事が役に立ったら、月額なしで PayPerChat でAIを使ってみましょう！",
+        "ctaButton": "PayPerChat を無料で試す"
+      },
+      "navigation": {
+        "previousPost": "前の記事",
+        "nextPost": "次の記事",
+        "backToHome": "ホームへ戻る"
+      }
+    }
+  },
+  "listPages": {
+    "categories": "すべてのカテゴリー",
+    "tags": "すべてのタグ",
+    "posts": "すべての投稿"
+  },
+  "listPageDescriptions": {
+    "categories": "関心のあるトピック別にAI最適化ガイドを見つけましょう",
+    "tags": "タグ別に関連するAIガイドを見つけましょう",
+    "posts": "AIコスト最適化とLLM活用法に関するすべてのガイドをチェックしましょう"
+  },
+  "categoryDescriptions": {
+    "cost-optimization": "AIコストを効率的に管理する方法",
+    "artificial-intelligence": "人工知能の基本と活用方法",
+    "tutorials": "ステップ別のAI活用ハウツーと実務ガイド",
+    "productivity": "AIで業務効率を高める方法",
+    "news": "最新のAIニュースとアップデート",
+    "reviews": "AIサービスの比較と選び方ガイド",
+    "general": "AIに関する役立つ情報とガイド"
+  },
+  "test": {
+    "title": "日本語テストページ",
+    "description": "このページが表示されていれば Next.js のルーティングは正常に動作しています。",
+    "goToEnglish": "英語ページへ移動",
+    "goToHomepage": "実際の日本語ホームページへ移動"
+  },
+  "metadata": {
+    "home": {
+      "title": "AIコストを70%削減する PayPerChat ブログ",
+      "description": "ChatGPT Plus の代わりに従量課金型AIサービスで毎月最大70%節約。LLMの最適化とコスト効率の高い活用方法を紹介します。"
+    },
+    "posts": {
+      "title": "すべての投稿 - PayPerChat ブログ",
+      "description": "AIコスト最適化と活用ガイドに関する記事をすべてご覧いただけます。"
+    },
+    "categories": {
+      "title": "カテゴリー - PayPerChat ブログ",
+      "description": "AIのトピック別カテゴリーから記事を閲覧しましょう。"
+    },
+    "tags": {
+      "title": "タグ - PayPerChat ブログ",
+      "description": "AIとコスト最適化に関連するタグから記事を探しましょう。"
+    }
+  }
+}

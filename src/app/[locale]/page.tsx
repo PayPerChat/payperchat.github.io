@@ -15,24 +15,38 @@ interface HomePageProps {
 export async function generateMetadata({ params }: HomePageProps) {
   const { locale } = await params;
   const metadataConfig = generateBaseMetadata(locale);
-  
+
+  const title =
+      locale === 'ko'
+          ? 'AI 비용 70% 절약하는 PayPerChat 블로그'
+          : locale === 'ja'
+              ? 'AIコストを70%削減する PayPerChat ブログ'
+              : 'PayPerChat Blog - Save 70% on AI Costs';
+
+  const description =
+      locale === 'ko'
+          ? 'ChatGPT Plus 대신 종량제 AI 서비스로 월 70% 절약하세요. LLM 최적화와 비용 효율적인 AI 사용법을 알아보세요.'
+          : locale === 'ja'
+              ? 'ChatGPT Plus の代わりに従量課金型AIサービスで毎月最大70%節約。LLMの最適化とコスト効率の高い活用方法を紹介します。'
+              : 'Save 70% monthly by switching from ChatGPT Plus to pay-per-use AI services. Learn LLM optimization and cost-efficient AI usage.';
+
+  const ogTitle = title;
+  const ogDescription =
+      locale === 'ko'
+          ? 'ChatGPT Plus 대신 종량제 AI로 월 70% 절약'
+          : locale === 'ja'
+              ? 'ChatGPT Plus の代わりに従量課金AIで毎月70%節約'
+              : 'Save 70% monthly with pay-per-use AI instead of ChatGPT Plus';
+
   return toNextjsMetadata({
     ...metadataConfig,
-    title: locale === 'ko' 
-      ? 'AI 비용 70% 절약하는 PayPerChat 블로그'
-      : 'PayPerChat Blog - Save 70% on AI Costs',
-    description: locale === 'ko'
-      ? 'ChatGPT Plus 대신 종량제 AI 서비스로 월 70% 절약하세요. LLM 최적화와 비용 효율적인 AI 사용법을 알아보세요.'
-      : 'Save 70% monthly by switching from ChatGPT Plus to pay-per-use AI services. Learn LLM optimization and cost-efficient AI usage.',
+    title,
+    description,
     openGraph: {
       ...metadataConfig.openGraph!,
-      title: locale === 'ko'
-        ? 'AI 비용 70% 절약하는 PayPerChat 블로그'
-        : 'PayPerChat Blog - Save 70% on AI Costs',
-      description: locale === 'ko'
-        ? 'ChatGPT Plus 대신 종량제 AI로 월 70% 절약'
-        : 'Save 70% monthly with pay-per-use AI instead of ChatGPT Plus'
-    }
+      title: ogTitle,
+      description: ogDescription,
+    },
   });
 }
 

@@ -8,6 +8,19 @@ interface JsonLdProps {
 export default function JsonLd({ post, locale }: JsonLdProps) {
   const baseUrl = 'https://payperchat.github.io';
 
+  // ✅ 로케일 매핑
+  const langTag = locale === 'ko' ? 'ko-KR' : locale === 'ja' ? 'ja-JP' : 'en-US';
+  const siteName =
+      locale === 'ko' ? 'PayPerChat 블로그' :
+          locale === 'ja' ? 'PayPerChat ブログ' :
+              'PayPerChat Blog';
+  const siteDesc =
+      locale === 'ko'
+          ? 'AI 비용 최적화와 LLM 사용법 가이드'
+          : locale === 'ja'
+              ? 'AIコスト最適化とLLM活用ガイド'
+              : 'AI Cost Optimization and LLM Usage Guides';
+
   if (post) {
     // Article structured data
     const articleData = {
@@ -25,7 +38,7 @@ export default function JsonLd({ post, locale }: JsonLdProps) {
       },
       publisher: {
         '@type': 'Organization',
-        name: 'PayPerChat Blog',
+        name: siteName, // ✅ 로컬라이즈
         logo: {
           '@type': 'ImageObject',
           url: `${baseUrl}/favicon.ico`
@@ -37,14 +50,14 @@ export default function JsonLd({ post, locale }: JsonLdProps) {
       },
       articleSection: post.categories[0],
       keywords: post.tags.join(', '),
-      inLanguage: locale === 'ko' ? 'ko-KR' : 'en-US'
+      inLanguage: langTag // ✅ ko-KR / ja-JP / en-US
     };
 
     return (
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData) }}
-      />
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData) }}
+        />
     );
   }
 
@@ -52,10 +65,8 @@ export default function JsonLd({ post, locale }: JsonLdProps) {
   const websiteData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'PayPerChat Blog',
-    description: locale === 'ko' 
-      ? 'AI 비용 최적화와 LLM 사용법 가이드' 
-      : 'AI Cost Optimization and LLM Usage Guides',
+    name: siteName,          // ✅ 로컬라이즈
+    description: siteDesc,   // ✅ 로컬라이즈
     url: `${baseUrl}/${locale}`,
     potentialAction: {
       '@type': 'SearchAction',
@@ -74,13 +85,13 @@ export default function JsonLd({ post, locale }: JsonLdProps) {
         url: `${baseUrl}/favicon.ico`
       }
     },
-    inLanguage: locale === 'ko' ? 'ko-KR' : 'en-US'
+    inLanguage: langTag // ✅ ko-KR / ja-JP / en-US
   };
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteData) }}
-    />
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteData) }}
+      />
   );
 }
